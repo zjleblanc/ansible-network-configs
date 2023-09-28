@@ -1,0 +1,102 @@
+acl_interfaces:
+-   access_groups:
+    -   acls:
+        -   direction: in
+            name: 1
+        -   direction: out
+            name: 2
+        afi: ipv4
+    name: GigabitEthernet2
+-   access_groups:
+    -   acls:
+        -   direction: in
+            name: 2
+        -   direction: out
+            name: 1
+        afi: ipv4
+    name: GigabitEthernet3
+acls:
+-   acls:
+    -   aces:
+        -   grant: permit
+            sequence: 10
+            source:
+                address: 10.0.0.0
+                wildcard_bits: 0.255.255.255
+        -   grant: deny
+            sequence: 20
+            source:
+                host: any
+        acl_type: standard
+        name: '1'
+    -   aces:
+        -   grant: permit
+            sequence: 10
+            source:
+                host: any
+        acl_type: standard
+        name: '2'
+    afi: ipv4
+bgp_global: {}
+hostname:
+    hostname: csr1000v-1
+interfaces:
+-   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
+    enabled: true
+    name: GigabitEthernet1
+-   description: Network Interface
+    enabled: false
+    name: GigabitEthernet2
+-   description: Network Interface
+    enabled: false
+    name: GigabitEthernet3
+l2_interfaces:
+-   name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+l3_interfaces:
+-   ipv4:
+    -   address: 10.10.20.48/24
+    name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+lacp:
+    system:
+        priority: 32768
+lacp_interfaces:
+-   name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+lag_interfaces: {}
+lldp_global: {}
+lldp_interfaces: []
+logging_global: {}
+ntp_global: {}
+ospfv2: {}
+prefix_lists: {}
+route_maps: {}
+service:
+    counters: 0
+    dhcp: true
+    pad: true
+    password_recovery: true
+    prompt: true
+    slave_log: true
+    timestamps:
+    -   datetime_options:
+            msec: true
+        msg: debug
+        timestamp: datetime
+    -   datetime_options:
+            msec: true
+        msg: log
+        timestamp: datetime
+snmp_server: {}
+static_routes:
+-   address_families:
+    -   afi: ipv4
+        routes:
+        -   dest: 0.0.0.0/0
+            next_hops:
+            -   forward_router_address: 10.10.20.254
+                interface: GigabitEthernet1

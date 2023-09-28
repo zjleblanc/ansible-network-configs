@@ -1,0 +1,321 @@
+acl_interfaces:
+-   name: BVI500
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+-   name: Loopback0
+-   name: Loopback10
+-   name: Loopback100
+-   name: Loopback101
+-   name: Loopback102
+-   name: Loopback103
+-   name: Loopback104
+-   name: Loopback400
+-   name: Loopback9
+-   name: Loopback99
+-   name: MgmtEth0/RP0/CPU0/0
+acls:
+-   acls:
+    -   aces:
+        -   destination:
+                address: 198.51.100.0
+                wildcard_bits: 0.0.0.255
+            grant: deny
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: tcp
+            sequence: 20
+            source:
+                any: true
+        name: IPv4-ACL
+    afi: ipv4
+bgp_address_family:
+    as_number: '6'
+bgp_global:
+    as_number: '6'
+    bgp:
+        router_id: 128.186.253.102
+    vrfs:
+    -   bgp:
+            router_id: 128.186.253.12
+        vrf: anycast
+bgp_neighbor_address_family:
+    as_number: '6'
+hostname:
+    hostname: R1
+interfaces:
+-   enabled: true
+    name: Loopback0
+-   enabled: true
+    name: Loopback9
+-   enabled: true
+    name: Loopback10
+-   description: THIS IS A TEST INTEFACE
+    enabled: true
+    name: Loopback99
+-   description: New Description
+    enabled: true
+    name: Loopback100
+-   description: New Description Update
+    enabled: true
+    name: Loopback101
+-   description: pick me
+    enabled: true
+    name: Loopback102
+-   enabled: true
+    name: Loopback103
+-   enabled: true
+    name: Loopback104
+-   enabled: true
+    name: Loopback400
+-   enabled: true
+    name: MgmtEth0/RP0/CPU0/0
+-   description: ACCEDIAN-TWAMP-SFP
+    enabled: true
+    name: GigabitEthernet0/0/0/0
+-   description: TESTING PYTHON SCRIPT v2
+    enabled: true
+    name: GigabitEthernet0/0/0/1
+-   description: Configured and Merged by Ansible Network 2 to be tested by PyATS
+    enabled: true
+    name: GigabitEthernet0/0/0/2
+-   description: ACCEDIAN-TWAMP-SFP
+    enabled: true
+    name: GigabitEthernet0/0/0/3
+-   description: Test descrition 4
+    enabled: false
+    name: GigabitEthernet0/0/0/4
+-   description: test2
+    enabled: false
+    name: GigabitEthernet0/0/0/5
+-   description: Test descrition 6
+    enabled: false
+    name: GigabitEthernet0/0/0/6
+l2_interfaces:
+-   name: Loopback0
+-   name: Loopback9
+-   name: Loopback10
+-   name: Loopback99
+-   name: Loopback100
+-   name: Loopback101
+-   name: Loopback102
+-   name: Loopback103
+-   name: Loopback104
+-   name: Loopback400
+-   name: MgmtEth0/RP0/CPU0/0
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+l3_interfaces:
+-   ipv4:
+    -   address: 210.1.1.1/32
+    name: Loopback0
+-   ipv4:
+    -   address: 9.9.9.9/32
+    name: Loopback9
+-   ipv4:
+    -   address: 10.0.0.1/32
+    name: Loopback10
+-   name: Loopback99
+-   ipv4:
+    -   address: 1.1.1.100/32
+    name: Loopback100
+-   ipv4:
+    -   address: 10.100.11.1/32
+    name: Loopback101
+-   ipv4:
+    -   address: 10.100.11.2/32
+    name: Loopback102
+-   ipv4:
+    -   address: 10.100.11.3/32
+    name: Loopback103
+-   ipv4:
+    -   address: 10.100.11.4/32
+    name: Loopback104
+-   name: Loopback400
+-   ipv4:
+    -   address: 10.10.20.175/24
+    name: MgmtEth0/RP0/CPU0/0
+-   ipv4:
+    -   address: 10.10.10.1/24
+    name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   ipv4:
+    -   address: 1.1.1.1/24
+    ipv6:
+    -   address: 121:121::1/64
+    name: GigabitEthernet0/0/0/2
+-   ipv4:
+    -   address: 172.16.1.1/24
+    name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+lacp: {}
+lacp_interfaces:
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+lag_interfaces: []
+lldp_global: {}
+lldp_interfaces:
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+logging_global:
+    hosts:
+    -   host: 10.10.20.175
+        port: default
+        vrf: default
+ntp_global:
+    servers:
+    -   prefer: true
+        server: 132.163.97.5
+ospf_interfaces: []
+ospfv2: {}
+ospfv3: {}
+prefix_lists: []
+snmp_server:
+    communities:
+    -   name: public
+        ro: true
+    traps:
+        addrpool:
+            high: true
+            low: true
+        bfd: true
+        bgp:
+            cbgp2: true
+        bridgemib: true
+        cisco_entity_ext: true
+        config: true
+        copy_complete: true
+        diameter:
+            peerdown: true
+            peerup: true
+            permanentfail: true
+            protocolerror: true
+            transientfail: true
+        entity: true
+        entity_redundancy:
+            all: true
+            status: true
+            switchover: true
+        entity_state:
+            operstatus: true
+            switchover: true
+        flash:
+            insertion: true
+            removal: true
+        fru_ctrl: true
+        hsrp: true
+        ipsec:
+            start: true
+            stop: true
+        ipsla: true
+        isakmp:
+            start: true
+            stop: true
+        isis:
+            all: true
+        l2tun:
+            sessions: true
+            tunnel_down: true
+            tunnel_up: true
+        l2vpn:
+            all: true
+            vc_down: true
+            vc_up: true
+        msdp_peer_state_change: true
+        ospf:
+            errors:
+                authentication_failure: true
+                bad_packet: true
+                config_error: true
+                virt_authentication_failure: true
+                virt_bad_packet: true
+                virt_config_error: true
+            lsa:
+                lsa_maxage: true
+                lsa_originate: true
+            retransmit:
+                packets: true
+                virt_packets: true
+            state_change:
+                if_state_change: true
+                neighbor_state_change: true
+                virtif_state_change: true
+                virtneighbor_state_change: true
+        ospfv3:
+            errors:
+                bad_packet: true
+                config_error: true
+                virt_bad_packet: true
+            state_change:
+                if_state_change: true
+                neighbor_state_change: true
+                restart_status_change: true
+                restart_virtual_helper_status_change: true
+                virtif_state_change: true
+                virtneighbor_state_change: true
+        pim:
+            interface_state_change: true
+            invalid_message_received: true
+            neighbor_change: true
+            rp_mapping_change: true
+        power: true
+        rf: true
+        rsvp:
+            all: true
+            lost_flow: true
+            new_flow: true
+        selective_vrf_download_role_change: true
+        sensor: true
+        snmp:
+            authentication: true
+            coldstart: true
+            linkdown: true
+            linkup: true
+            warmstart: true
+        subscriber:
+            session_agg_access_interface: true
+            session_agg_node: true
+        syslog: true
+        system: true
+        vpls:
+            all: true
+            full_clear: true
+            full_raise: true
+            status: true
+        vrrp_events: true
+static_routes:
+-   address_families:
+    -   afi: ipv4
+        routes:
+        -   dest: 0.0.0.0/0
+            next_hops:
+            -   forward_router_address: 10.10.20.254
+            -   forward_router_address: 10.10.20.254
+                interface: MgmtEth0
+        safi: unicast
