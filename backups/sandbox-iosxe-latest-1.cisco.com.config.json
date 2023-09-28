@@ -1,0 +1,174 @@
+{
+    "acls": [
+        {
+            "acls": [
+                {
+                    "aces": [
+                        {
+                            "destination": {
+                                "any": true
+                            },
+                            "grant": "permit",
+                            "protocol": "ip",
+                            "sequence": 10,
+                            "source": {
+                                "address": "192.168.1.0",
+                                "wildcard_bits": "0.0.0.255"
+                            }
+                        }
+                    ],
+                    "acl_type": "extended",
+                    "name": "NAT-ACL"
+                },
+                {
+                    "aces": [
+                        {
+                            "destination": {
+                                "host": "1.1.1.1"
+                            },
+                            "grant": "permit",
+                            "protocol": "ip",
+                            "sequence": 10,
+                            "source": {
+                                "any": true
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.3",
+                                "port_protocol": {
+                                    "eq": "bgp"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 20,
+                            "source": {
+                                "host": "2.2.2.2"
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.3",
+                                "port_protocol": {
+                                    "eq": "cmd"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 30,
+                            "source": {
+                                "host": "2.2.2.2"
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.3",
+                                "port_protocol": {
+                                    "eq": "123"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 40,
+                            "source": {
+                                "host": "2.2.2.2"
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.1",
+                                "port_protocol": {
+                                    "eq": "telnet"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 50,
+                            "source": {
+                                "host": "2.2.2.1"
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.1",
+                                "port_protocol": {
+                                    "eq": "www"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 51,
+                            "source": {
+                                "host": "2.2.2.1"
+                            }
+                        },
+                        {
+                            "destination": {
+                                "host": "3.3.3.1",
+                                "port_protocol": {
+                                    "eq": "cmd"
+                                }
+                            },
+                            "grant": "permit",
+                            "protocol": "tcp",
+                            "sequence": 61,
+                            "source": {
+                                "host": "2.2.2.1"
+                            }
+                        }
+                    ],
+                    "acl_type": "extended",
+                    "name": "Test"
+                },
+                {
+                    "acl_type": "extended",
+                    "name": "meraki-fqdn-dns"
+                }
+            ],
+            "afi": "ipv4"
+        }
+    ],
+    "hostname": {
+        "hostname": "Cat8000V"
+    },
+    "interfaces": [
+        {
+            "description": "MANAGEMENT INTERFACE - DON'T TOUCH ME",
+            "enabled": true,
+            "name": "GigabitEthernet1"
+        },
+        {
+            "description": "Network Interface",
+            "enabled": false,
+            "name": "GigabitEthernet2"
+        },
+        {
+            "description": "Network Interface",
+            "enabled": false,
+            "name": "GigabitEthernet3"
+        },
+        {
+            "enabled": true,
+            "name": "Loopback0"
+        },
+        {
+            "enabled": true,
+            "name": "Loopback10"
+        },
+        {
+            "description": "Loopback interface 100 created with Ansible",
+            "enabled": true,
+            "name": "Loopback100"
+        },
+        {
+            "description": "Configured by RESTCONF ga jadi",
+            "enabled": true,
+            "name": "Loopback109"
+        },
+        {
+            "enabled": true,
+            "name": "VirtualPortGroup0"
+        }
+    ]
+}
