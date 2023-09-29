@@ -14,6 +14,7 @@ acl_interfaces:
 -   name: Loopback102
 -   name: Loopback103
 -   name: Loopback104
+-   name: Loopback199
 -   name: Loopback400
 -   name: Loopback9
 -   name: Loopback99
@@ -75,6 +76,9 @@ interfaces:
     name: Loopback103
 -   enabled: true
     name: Loopback104
+-   description: THIS IS A TEST INTEFACE
+    enabled: true
+    name: Loopback199
 -   enabled: true
     name: Loopback400
 -   enabled: true
@@ -110,6 +114,7 @@ l2_interfaces:
 -   name: Loopback102
 -   name: Loopback103
 -   name: Loopback104
+-   name: Loopback199
 -   name: Loopback400
 -   name: MgmtEth0/RP0/CPU0/0
 -   name: GigabitEthernet0/0/0/0
@@ -145,6 +150,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.100.11.4/32
     name: Loopback104
+-   name: Loopback199
 -   name: Loopback400
 -   ipv4:
     -   address: 10.10.20.175/24

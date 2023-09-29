@@ -86,7 +86,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (edit 3 -> ansible)
+-   description: Port to Fabric (edit 4 -> ansible)
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
@@ -99,6 +99,9 @@ interfaces:
 -   description: Loopback interface 100 created with Ansible
     enabled: true
     name: Loopback100
+-   description: Added with RESTCONF
+    enabled: true
+    name: Loopback10055
 -   enabled: true
     name: Loopback105
 -   description: Configured by RESTCONF ga jadi
@@ -122,6 +125,7 @@ l2_interfaces:
 -   name: Loopback105
 -   name: Loopback109
 -   name: Loopback200
+-   name: Loopback10055
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
@@ -143,6 +147,9 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.10.10.10/32
     name: Loopback100
+-   ipv4:
+    -   address: 172.16.100.1/24
+    name: Loopback10055
 -   ipv4:
     -   address: 10.100.2.2/24
     name: Loopback105
@@ -175,6 +182,7 @@ lacp_interfaces:
 -   name: loopback105
 -   name: loopback109
 -   name: loopback200
+-   name: loopback10055
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3

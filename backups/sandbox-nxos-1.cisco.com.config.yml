@@ -81,6 +81,14 @@ acl_interfaces:
 -   name: loopback100
 -   name: loopback101
 -   name: loopback102
+-   name: loopback104
+-   name: loopback105
+-   name: loopback106
+-   name: loopback109
+-   name: loopback110
+-   name: loopback112
+-   name: loopback113
+-   name: loopback123
 acls: []
 bfd_interfaces: []
 bgp_address_family:
@@ -126,10 +134,14 @@ interfaces:
     mode: layer3
     name: Ethernet1/5
 -   name: Ethernet1/6
--   name: Ethernet1/7
--   name: Ethernet1/8
--   name: Ethernet1/9
--   name: Ethernet1/10
+-   description: SB-M04- Host 1 (vmware)
+    name: Ethernet1/7
+-   description: SB-M04- Host 2 (vmware)
+    name: Ethernet1/8
+-   description: SB-M04- Host 3 (vmware)
+    name: Ethernet1/9
+-   description: SB-M04- Host 4 (vmware)
+    name: Ethernet1/10
 -   name: Ethernet1/11
 -   description: ciao
     name: Ethernet1/12
@@ -198,6 +210,17 @@ interfaces:
 -   name: loopback100
 -   name: loopback101
 -   name: loopback102
+-   description: ciao
+    name: loopback104
+-   name: loopback105
+-   name: loopback106
+-   name: loopback109
+-   name: loopback110
+-   name: loopback112
+-   description: vlan 116
+    name: loopback113
+-   description: zanzibar
+    name: loopback123
 l2_interfaces:
 -   name: Vlan1
 -   name: Vlan100
@@ -230,10 +253,22 @@ l2_interfaces:
 -   name: Ethernet1/4
 -   name: Ethernet1/5
 -   name: Ethernet1/6
--   name: Ethernet1/7
--   name: Ethernet1/8
--   name: Ethernet1/9
--   name: Ethernet1/10
+-   mode: trunk
+    name: Ethernet1/7
+    trunk:
+        allowed_vlans: '1'
+-   mode: trunk
+    name: Ethernet1/8
+    trunk:
+        allowed_vlans: '1'
+-   mode: trunk
+    name: Ethernet1/9
+    trunk:
+        allowed_vlans: '1'
+-   mode: trunk
+    name: Ethernet1/10
+    trunk:
+        allowed_vlans: '1'
 -   name: Ethernet1/11
 -   name: Ethernet1/12
 -   name: Ethernet1/13
@@ -299,6 +334,14 @@ l2_interfaces:
 -   name: loopback100
 -   name: loopback101
 -   name: loopback102
+-   name: loopback104
+-   name: loopback105
+-   name: loopback106
+-   name: loopback109
+-   name: loopback110
+-   name: loopback112
+-   name: loopback113
+-   name: loopback123
 l3_interfaces:
 -   name: Vlan1
 -   ipv4:
@@ -404,6 +447,16 @@ l3_interfaces:
 -   name: loopback100
 -   name: loopback101
 -   name: loopback102
+-   name: loopback104
+-   name: loopback105
+-   name: loopback106
+-   name: loopback109
+-   name: loopback110
+-   name: loopback112
+-   name: loopback113
+-   ipv4:
+    -   address: 1.1.1.15/24
+    name: loopback123
 lacp: {}
 lacp_interfaces: []
 lag_interfaces:
@@ -620,6 +673,14 @@ ospf_interfaces:
 -   name: loopback100
 -   name: loopback101
 -   name: loopback102
+-   name: loopback104
+-   name: loopback105
+-   name: loopback106
+-   name: loopback109
+-   name: loopback110
+-   name: loopback112
+-   name: loopback113
+-   name: loopback123
 -   name: loopback30
 -   name: loopback98
 -   name: loopback99

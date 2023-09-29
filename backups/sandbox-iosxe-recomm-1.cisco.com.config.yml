@@ -39,7 +39,7 @@ acls:
     afi: ipv4
 bgp_global: {}
 hostname:
-    hostname: csr1000v-1
+    hostname: CSR1000V
 interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
