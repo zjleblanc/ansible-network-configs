@@ -86,7 +86,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (edit 6 -> ansible)
+-   description: Port to Fabric (edit 7 -> ansible)
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
