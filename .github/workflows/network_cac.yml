@@ -1,0 +1,28 @@
+name: network-config-as-code
+run-name: ${{ github.actor }} configure network devices
+on:
+  workflow_dispatch:
+    inputs:
+      ansible_limit:
+        description: 'Specify target hosts'     
+        required: true
+        default: 'sandbox-iosxe-latest-1.cisco.com'
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Launch Job Template
+      id: launch_job
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
+        method: 'POST'
+        bearerToken: ${{ secrets.AAP_TOKEN }}
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: '{"limit": "${{ github.event.inputs.ansible_limit }}"}'
+
+    - name: Show Response
+      run: |
+        echo ${{ steps.launch_job.outputs.response }}
+        echo ${{ steps.launch_job.outputs.headers }}
