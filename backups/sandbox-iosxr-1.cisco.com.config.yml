@@ -15,7 +15,9 @@ acl_interfaces:
 -   name: Loopback103
 -   name: Loopback104
 -   name: Loopback199
+-   name: Loopback333
 -   name: Loopback400
+-   name: Loopback444
 -   name: Loopback9
 -   name: Loopback99
 -   name: MgmtEth0/RP0/CPU0/0
@@ -80,7 +82,11 @@ interfaces:
     enabled: true
     name: Loopback199
 -   enabled: true
+    name: Loopback333
+-   enabled: true
     name: Loopback400
+-   enabled: true
+    name: Loopback444
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
 -   description: ACCEDIAN-TWAMP-SFP
@@ -115,7 +121,9 @@ l2_interfaces:
 -   name: Loopback103
 -   name: Loopback104
 -   name: Loopback199
+-   name: Loopback333
 -   name: Loopback400
+-   name: Loopback444
 -   name: MgmtEth0/RP0/CPU0/0
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
@@ -151,7 +159,13 @@ l3_interfaces:
     -   address: 10.100.11.4/32
     name: Loopback104
 -   name: Loopback199
+-   ipv4:
+    -   address: 3.3.3.3/32
+    name: Loopback333
 -   name: Loopback400
+-   ipv4:
+    -   address: 4.4.4.4/32
+    name: Loopback444
 -   ipv4:
     -   address: 10.10.20.175/24
     name: MgmtEth0/RP0/CPU0/0

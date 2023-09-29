@@ -1,45 +1,8 @@
-acl_interfaces:
--   access_groups:
-    -   acls:
-        -   direction: in
-            name: 1
-        -   direction: out
-            name: 2
-        afi: ipv4
-    name: GigabitEthernet2
--   access_groups:
-    -   acls:
-        -   direction: in
-            name: 2
-        -   direction: out
-            name: 1
-        afi: ipv4
-    name: GigabitEthernet3
-acls:
--   acls:
-    -   aces:
-        -   grant: permit
-            sequence: 10
-            source:
-                address: 10.0.0.0
-                wildcard_bits: 0.255.255.255
-        -   grant: deny
-            sequence: 20
-            source:
-                host: any
-        acl_type: standard
-        name: '1'
-    -   aces:
-        -   grant: permit
-            sequence: 10
-            source:
-                host: any
-        acl_type: standard
-        name: '2'
-    afi: ipv4
+acl_interfaces: {}
+acls: {}
 bgp_global: {}
 hostname:
-    hostname: CSR1000V
+    hostname: csr1000v-1
 interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
@@ -72,7 +35,10 @@ lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
 ntp_global: {}
-ospfv2: {}
+ospfv2:
+    processes:
+    -   process_id: 1
+        router_id: 1.1.1.1
 prefix_lists: {}
 route_maps: {}
 service:
