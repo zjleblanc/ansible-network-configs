@@ -3,13 +3,13 @@ run-name: ${{ github.actor }} configure network devices
 on:
   workflow_dispatch:
     inputs:
-      ansible_limit:
+      target_hosts:
         description: 'Specify target hosts'     
         required: true
         default: 'sandbox-iosxe-latest-1.cisco.com'
 
 jobs:
-  deployment:
+  apply_network_configurations:
     runs-on: ubuntu-latest
     steps:
     - name: Launch Job Template
@@ -20,7 +20,7 @@ jobs:
         method: 'POST'
         bearerToken: ${{ secrets.AAP_TOKEN }}
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"limit": "${{ github.event.inputs.ansible_limit }}"}'
+        data: '{"extra_vars": {"_hosts": "${{ github.event.inputs.target_hosts }}"}}'
 
     - name: Show Response
       run: |
