@@ -86,7 +86,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (edit 7 -> ansible)
+-   description: Port to Fabric (edit 8 -> ansible)
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
@@ -107,6 +107,9 @@ interfaces:
 -   description: Configured by RESTCONF ga jadi
     enabled: true
     name: Loopback109
+-   description: Michiel
+    enabled: true
+    name: Loopback159
 -   description: Configured_with_Postman
     enabled: true
     name: Loopback200
@@ -128,6 +131,7 @@ l2_interfaces:
 -   name: Loopback100
 -   name: Loopback105
 -   name: Loopback109
+-   name: Loopback159
 -   name: Loopback200
 -   name: Loopback10055
 -   name: VirtualPortGroup0
@@ -140,6 +144,8 @@ l3_interfaces:
     name: GigabitEthernet1
 -   ipv4:
     -   address: 10.90.89.89/24
+        secondary: true
+    -   address: 10.90.90.95/24
         secondary: true
     -   address: 10.90.90.90/24
     name: GigabitEthernet2
@@ -160,6 +166,9 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.255.255.9/24
     name: Loopback109
+-   ipv4:
+    -   address: 172.16.108.8/32
+    name: Loopback159
 -   ipv4:
     -   address: 10.202.202.1/24
         secondary: true
@@ -189,6 +198,7 @@ lacp_interfaces:
 -   name: loopback100
 -   name: loopback105
 -   name: loopback109
+-   name: loopback159
 -   name: loopback200
 -   name: loopback10055
 -   name: GigabitEthernet1
@@ -201,6 +211,7 @@ logging_global: {}
 ntp_global: {}
 ospfv2:
     processes:
+    -   process_id: 1
     -   process_id: 19
         router_id: 33.44.88.22
 prefix_lists: {}
@@ -237,6 +248,18 @@ static_routes:
         -   dest: 10.19.19.20/32
             next_hops:
             -   forward_router_address: 10.100.1.1
+        -   dest: 10.20.20.20/32
+            next_hops:
+            -   forward_router_address: 10.100.1.1
+                name: 10.100.1.1
+        -   dest: 10.20.20.21/32
+            next_hops:
+            -   forward_router_address: 10.100.1.1
+                name: 10.100.1.1
+        -   dest: 10.20.20.22/32
+            next_hops:
+            -   forward_router_address: 10.100.1.1
+                name: 10.100.1.1
 vlans:
 -   mtu: 1500
     name: default
