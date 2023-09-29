@@ -20,7 +20,7 @@ jobs:
         method: 'POST'
         bearerToken: ${{ secrets.AAP_TOKEN }}
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"extra_vars": {"_hosts": "${{ github.event.inputs.target_hosts }}"}}'
+        data: '{"extra_vars": {"_hosts": "${{ github.event.inputs.target_hosts }}", "config_repo_name": "ansible-network-configs"}}'
 
     - name: Show Response
       run: |
