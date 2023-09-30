@@ -26,8 +26,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             hosts+=(${file:8:-11})
           done
-          num_hosts=$(echo $hosts | jq '. | length')
-          echo "num_hosts=$num_hosts" >> $GITHUB_OUTPUT
+          echo "num_hosts=${#hosts[@]}" >> $GITHUB_OUTPUT
           echo "target_hosts=$hosts" >> $GITHUB_OUTPUT
 
       - name: Launch Job Template
