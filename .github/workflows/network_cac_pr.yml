@@ -1,0 +1,26 @@
+name: network-config-as-code-pull-request
+run-name: ${{ github.actor }} configure network devices (PR)
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  apply_network_configurations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v39
+        with:
+          files: configs/*.config.yml
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done

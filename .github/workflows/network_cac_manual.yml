@@ -1,5 +1,5 @@
-name: network-config-as-code
-run-name: ${{ github.actor }} configure network devices
+name: network-config-as-code-manual
+run-name: ${{ github.actor }} configure network devices (manual)
 on:
   workflow_dispatch:
     inputs:
