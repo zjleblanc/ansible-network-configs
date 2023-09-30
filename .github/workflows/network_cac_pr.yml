@@ -26,23 +26,23 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             hosts+=(${file:8:-11})
           done
-          echo "target_hosts=$hosts" >> "$GITHUB_OUTPUT"
+          num_hosts=$(echo $hosts | jq '. | length')
+          echo "::set-output name=target_hosts::$hosts"
+          echo "::set-output name=num_hosts::$num_hosts"
 
-      - name: Output target hosts
-        run: |
-          echo ${{ join(steps.extract-hosts.outputs.target_hosts) }}
-
-      # - name: Launch Job Template
-      #   id: launch_job
-      #   uses: fjogeleit/http-request-action@v1
-      #   with:
-      #     url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
-      #     method: 'POST'
-      #     bearerToken: ${{ secrets.AAP_TOKEN }}
-      #     customHeaders: '{"Content-Type": "application/json"}'
-      #     data: '{"extra_vars": {"_hosts": "${{ join(steps.extract-hosts.outputs.target_hosts) }}", "config_repo_name": "ansible-network-configs"}}'
+      - name: Launch Job Template
+        id: launch_job
+        if: steps.extract-hosts.outputs.num_hosts > 0
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
+          method: 'POST'
+          bearerToken: ${{ secrets.AAP_TOKEN }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"extra_vars": {"_hosts": "${{ join(steps.extract-hosts.outputs.target_hosts) }}", "config_repo_name": "ansible-network-configs"}}'
     
-      # - name: Show Response
-      #   run: |
-      #     echo ${{ steps.launch_job.outputs.response }}
-      #     echo ${{ steps.launch_job.outputs.headers }}
+      - name: Show Response
+        if: steps.launch_job.conclusion == 'success'
+        run: |
+          echo ${{ steps.launch_job.outputs.response }}
+          echo ${{ steps.launch_job.outputs.headers }}
