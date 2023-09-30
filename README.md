@@ -1,6 +1,8 @@
 # ansible-network-configs
 Use for network configuration as code and backup / restore processes.
 
+![Network CaC Workflow](https://github.com/zjleblanc/ansible-network-configs/actions/workflows/network_cac_pr.yml/badge.svg)
+
 ## configs
 
 Golden configurations for a device or set of devices. A GitHub workflow can be used to deploy the configurations via Ansible. The file name is important - `<device>.config.yml` - "device" will be passed as the limit to Ansible. 
