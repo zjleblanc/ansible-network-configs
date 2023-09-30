@@ -20,7 +20,29 @@ jobs:
           files: configs/*.config.yml
 
       - name: List all changed files
+        id: extract-hosts
         run: |
+          hosts=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+            hosts+=(${file:8:-11})
           done
+          echo "target_hosts=$hosts" >> "$GITHUB_OUTPUT"
+
+      - name: Output target hosts
+        run: |
+          echo ${{ join(steps.extract-hosts.outputs.target_hosts) }}
+
+      # - name: Launch Job Template
+      #   id: launch_job
+      #   uses: fjogeleit/http-request-action@v1
+      #   with:
+      #     url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
+      #     method: 'POST'
+      #     bearerToken: ${{ secrets.AAP_TOKEN }}
+      #     customHeaders: '{"Content-Type": "application/json"}'
+      #     data: '{"extra_vars": {"_hosts": "${{ join(steps.extract-hosts.outputs.target_hosts) }}", "config_repo_name": "ansible-network-configs"}}'
+    
+      # - name: Show Response
+      #   run: |
+      #     echo ${{ steps.launch_job.outputs.response }}
+      #     echo ${{ steps.launch_job.outputs.headers }}
