@@ -78,6 +78,43 @@ acls:
         name: Test
     -   acl_type: extended
         name: meraki-fqdn-dns
+    -   aces:
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: telnet
+            grant: deny
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: deny
+            protocol: tcp
+            sequence: 20
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: '22'
+            grant: deny
+            protocol: tcp
+            sequence: 30
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: ip
+            sequence: 40
+            source:
+                any: true
+        acl_type: extended
+        name: sl_def_acl
     afi: ipv4
 bgp_global: {}
 hostname:
@@ -86,7 +123,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (edit 5 -> ansible)
+-   description: Port to Fabric (golden config -> ansible)
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
@@ -102,11 +139,15 @@ interfaces:
 -   description: Added with RESTCONF
     enabled: true
     name: Loopback10055
+-   enabled: false
+    name: Loopback1010
 -   enabled: true
     name: Loopback105
 -   description: Configured by RESTCONF ga jadi
     enabled: true
     name: Loopback109
+-   enabled: false
+    name: Loopback113
 -   enabled: false
     name: Loopback159
 -   description: Configured_with_Postman
@@ -130,8 +171,10 @@ l2_interfaces:
 -   name: Loopback100
 -   name: Loopback105
 -   name: Loopback109
+-   name: Loopback113
 -   name: Loopback159
 -   name: Loopback200
+-   name: Loopback1010
 -   name: Loopback10055
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
@@ -157,12 +200,14 @@ l3_interfaces:
 -   ipv4:
     -   address: 172.16.100.1/24
     name: Loopback10055
+-   name: Loopback1010
 -   ipv4:
     -   address: 10.100.2.2/24
     name: Loopback105
 -   ipv4:
     -   address: 10.255.255.9/24
     name: Loopback109
+-   name: Loopback113
 -   name: Loopback159
 -   ipv4:
     -   address: 10.202.202.1/24
@@ -193,8 +238,10 @@ lacp_interfaces:
 -   name: loopback100
 -   name: loopback105
 -   name: loopback109
+-   name: loopback113
 -   name: loopback159
 -   name: loopback200
+-   name: loopback1010
 -   name: loopback10055
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
@@ -202,7 +249,8 @@ lacp_interfaces:
 lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
-logging_global: {}
+logging_global:
+    userinfo: true
 ntp_global: {}
 ospfv2:
     processes:
@@ -224,7 +272,7 @@ service:
         msg: debug
         timestamp: datetime
     -   datetime_options:
-            msec: true
+            localtime: true
         msg: log
         timestamp: datetime
 snmp_server:
