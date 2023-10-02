@@ -14,6 +14,45 @@ acls:
         name: NAT-ACL
     -   aces:
         -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: '443'
+            grant: permit
+            protocol: tcp
+            sequence: 20
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: udp
+            sequence: 30
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: deny
+            log:
+                set: true
+            protocol: ip
+            sequence: 40
+            source:
+                any: true
+        acl_type: extended
+        name: NETCONF_ACL
+    -   aces:
+        -   destination:
                 host: 1.1.1.1
             grant: permit
             protocol: ip
@@ -79,7 +118,20 @@ acls:
     -   acl_type: extended
         name: meraki-fqdn-dns
     afi: ipv4
-bgp_global: {}
+bgp_global:
+    as_number: '65300'
+    bgp:
+        log_neighbor_changes: true
+        router_id:
+            address: 42.42.42.42
+    neighbors:
+    -   description: mysuperpeer
+        neighbor_address: 40.40.40.40
+        remote_as: '65200'
+        timers:
+            holdtime: 46
+            interval: 15
+        update_source: GigabitEthernet3
 hostname:
     hostname: Cat8000V
 interfaces:
@@ -106,6 +158,9 @@ interfaces:
 -   description: Configured by RESTCONF ga jadi
     enabled: true
     name: Loopback109
+-   description: Demo interface by CLI and netmiko option
+    enabled: true
+    name: Loopback113
 -   description: Loopback MV
     enabled: true
     name: Loopback159
@@ -120,6 +175,9 @@ interfaces:
 -   description: Krystianowo Tomkowy loopback
     enabled: true
     name: Loopback3101
+-   description: CREATED_BY_NETCONF
+    enabled: true
+    name: Loopback42
 -   enabled: true
     name: Loopback55
 -   description: Testing
@@ -134,12 +192,14 @@ interfaces:
 l2_interfaces:
 -   name: Loopback0
 -   name: Loopback10
+-   name: Loopback42
 -   name: Loopback55
 -   name: Loopback56
 -   name: Loopback99
 -   name: Loopback100
 -   name: Loopback105
 -   name: Loopback109
+-   name: Loopback113
 -   name: Loopback159
 -   name: Loopback200
 -   name: Loopback203
@@ -176,6 +236,9 @@ l3_interfaces:
     -   address: 10.255.255.9/24
     name: Loopback109
 -   ipv4:
+    -   address: 192.168.113.1/24
+    name: Loopback113
+-   ipv4:
     -   address: 159.159.159.159/32
     name: Loopback159
 -   ipv4:
@@ -192,6 +255,9 @@ l3_interfaces:
 -   ipv4:
     -   address: 1.2.3.16/32
     name: Loopback3101
+-   ipv4:
+    -   address: 10.0.42.5/24
+    name: Loopback42
 -   ipv4:
     -   address: 10.101.75.1/24
     name: Loopback55
@@ -211,12 +277,14 @@ lacp:
 lacp_interfaces:
 -   name: loopback0
 -   name: loopback10
+-   name: loopback42
 -   name: loopback55
 -   name: loopback56
 -   name: loopback99
 -   name: loopback100
 -   name: loopback105
 -   name: loopback109
+-   name: loopback113
 -   name: loopback159
 -   name: loopback200
 -   name: loopback203
@@ -247,8 +315,40 @@ ospfv2:
         router_id: 159.159.159.159
     -   process_id: 19
         router_id: 33.44.88.22
-prefix_lists: {}
-route_maps: {}
+    -   default_information:
+            metric: 200
+            originate: true
+        network:
+        -   address: 42.42.42.42
+            area: '0'
+            wildcard_bits: 0.0.0.0
+        process_id: 42
+        router_id: 42.42.42.42
+prefix_lists:
+-   afi: ipv4
+    prefix_lists:
+    -   entries:
+        -   action: permit
+            prefix: 10.0.1.0/24
+            sequence: 10
+        name: PL-STATIC-TO-OSPF
+route_maps:
+-   entries:
+    -   action: permit
+        match:
+            interfaces:
+            - Loopback42
+        sequence: 10
+    route_map: RM-CONN-TO-OSPF
+-   entries:
+    -   action: permit
+        match:
+            ip:
+                address:
+                    prefix_lists:
+                    - PL-STATIC-TO-OSPF
+        sequence: 10
+    route_map: RM-STATIC-TO-OSPF
 service:
     call_home: true
     counters: 0

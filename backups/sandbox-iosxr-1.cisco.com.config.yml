@@ -1,3 +1,53 @@
+acl_interfaces:
+-   name: BVI500
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+-   name: Loopback0
+-   name: Loopback1
+-   name: Loopback10
+-   name: Loopback100
+-   name: Loopback101
+-   name: Loopback102
+-   name: Loopback103
+-   name: Loopback104
+-   name: Loopback199
+-   name: Loopback3
+-   name: Loopback333
+-   name: Loopback400
+-   name: Loopback444
+-   name: Loopback818
+-   name: Loopback820
+-   name: Loopback821
+-   name: Loopback9
+-   name: Loopback99
+-   name: MgmtEth0/RP0/CPU0/0
+acls:
+-   acls:
+    -   aces:
+        -   destination:
+                address: 198.51.100.0
+                wildcard_bits: 0.0.0.255
+            grant: deny
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: tcp
+            sequence: 20
+            source:
+                any: true
+        name: IPv4-ACL
+    afi: ipv4
+bgp_address_family:
+    as_number: '6'
 bgp_global:
     as_number: '6'
     bgp:
@@ -47,6 +97,14 @@ interfaces:
     name: Loopback400
 -   enabled: true
     name: Loopback444
+-   description: Orhan Ergun is here
+    enabled: true
+    name: Loopback818
+-   enabled: true
+    name: Loopback820
+-   description: lalala
+    enabled: true
+    name: Loopback821
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
 -   description: ACCEDIAN-TWAMP-SFP
@@ -86,6 +144,9 @@ l2_interfaces:
 -   name: Loopback333
 -   name: Loopback400
 -   name: Loopback444
+-   name: Loopback818
+-   name: Loopback820
+-   name: Loopback821
 -   name: MgmtEth0/RP0/CPU0/0
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
@@ -130,6 +191,13 @@ l3_interfaces:
 -   ipv4:
     -   address: 4.4.4.4/32
     name: Loopback444
+-   ipv4:
+    -   address: 18.18.18.18/32
+    name: Loopback818
+-   ipv4:
+    -   address: 11.11.11.11/32
+    name: Loopback820
+-   name: Loopback821
 -   ipv4:
     -   address: 10.10.20.175/24
     name: MgmtEth0/RP0/CPU0/0
