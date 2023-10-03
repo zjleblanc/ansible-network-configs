@@ -12,10 +12,25 @@ interfaces:
 -   description: Network Interface
     enabled: false
     name: GigabitEthernet2
--   description: Network Interface
-    enabled: false
+-   description: Ringcam
+    enabled: true
     name: GigabitEthernet3
+-   enabled: true
+    name: Loopback10
+-   description: UPDATED from PUT23
+    enabled: true
+    name: Loopback1000
+-   description: UPDATED from PUT23
+    enabled: true
+    name: Loopback1001
+-   description: Agregada by Teslag Networks
+    enabled: true
+    name: Loopback401
 l2_interfaces:
+-   name: Loopback10
+-   name: Loopback401
+-   name: Loopback1000
+-   name: Loopback1001
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
@@ -29,10 +44,20 @@ l3_interfaces:
     name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
+-   name: Loopback10
+-   name: Loopback1000
+-   name: Loopback1001
+-   ipv4:
+    -   address: 1.1.1.1/32
+    name: Loopback401
 lacp:
     system:
         priority: 32768
 lacp_interfaces:
+-   name: loopback10
+-   name: loopback401
+-   name: loopback1000
+-   name: loopback1001
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
@@ -41,7 +66,15 @@ lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
 ntp_global: {}
-ospfv2: {}
+ospfv2:
+    processes:
+    -   passive_interfaces:
+            interface:
+                name:
+                - Loopback401
+                set_interface: true
+        process_id: 1
+        router_id: 1.1.1.1
 prefix_lists: {}
 route_maps: {}
 service:

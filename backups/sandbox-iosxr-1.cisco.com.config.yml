@@ -1,4 +1,6 @@
 acl_interfaces:
+-   name: BVI10
+-   name: BVI11
 -   name: BVI500
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
@@ -20,6 +22,7 @@ acl_interfaces:
 -   name: Loopback333
 -   name: Loopback400
 -   name: Loopback444
+-   name: Loopback79
 -   name: Loopback818
 -   name: Loopback820
 -   name: Loopback821
@@ -72,6 +75,8 @@ interfaces:
     name: Loopback9
 -   enabled: true
     name: Loopback10
+-   enabled: true
+    name: Loopback79
 -   description: THIS IS A TEST INTEFACE
     enabled: true
     name: Loopback99
@@ -134,6 +139,7 @@ l2_interfaces:
 -   name: Loopback3
 -   name: Loopback9
 -   name: Loopback10
+-   name: Loopback79
 -   name: Loopback99
 -   name: Loopback100
 -   name: Loopback101
@@ -167,6 +173,9 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.0.0.1/32
     name: Loopback10
+-   ipv4:
+    -   address: 10.0.0.1/32
+    name: Loopback79
 -   name: Loopback99
 -   ipv4:
     -   address: 1.1.1.100/32
