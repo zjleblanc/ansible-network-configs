@@ -1,6 +1,17 @@
 acl_interfaces: {}
 acls: {}
-bgp_global: {}
+bgp_global:
+    as_number: '16501'
+    bgp:
+        log_neighbor_changes: true
+    neighbors:
+    -   neighbor_address: 7.7.7.7
+        remote_as: '777'
+        update_source: Loopback10
+    -   neighbor_address: 8.8.8.8
+        remote_as: '888'
+    -   neighbor_address: 9.9.9.9
+        remote_as: '999'
 hostname:
     hostname: csr1000v-1
 interfaces:
@@ -37,7 +48,7 @@ l2_interfaces:
 -   name: BDI10
 l3_interfaces:
 -   ipv4:
-    -   address: 192.168.1.1/24
+    -   address: 10.0.33.1/24
     name: BDI10
 -   ipv4:
     -   address: 10.10.20.48/24

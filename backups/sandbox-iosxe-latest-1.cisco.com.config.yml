@@ -141,12 +141,11 @@ interfaces:
 -   description: DEVNET_EXPERT
     enabled: true
     name: GigabitEthernet2
--   enabled: true
+-   enabled: false
     name: GigabitEthernet3
 -   enabled: true
     name: Loopback0
--   description: Created by Ansible
-    enabled: true
+-   enabled: true
     name: Loopback10
 -   description: Loopback interface 100 created with Ansible
     enabled: true
@@ -179,8 +178,7 @@ interfaces:
 -   description: CREATED_BY_NETCONF
     enabled: true
     name: Loopback42
--   description: CONFIGURED_BY_NETMIKO
-    enabled: true
+-   enabled: false
     name: Loopback43
 -   enabled: true
     name: Loopback55
@@ -227,9 +225,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.0.0.1/24
     name: Loopback0
--   ipv4:
-    -   address: 10.50.50.10/24
-    name: Loopback10
+-   name: Loopback10
 -   ipv4:
     -   address: 10.10.10.10/32
     name: Loopback100
@@ -265,9 +261,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.0.42.5/24
     name: Loopback42
--   ipv4:
-    -   address: 10.0.43.1/24
-    name: Loopback43
+-   name: Loopback43
 -   ipv4:
     -   address: 10.101.75.1/24
     name: Loopback55
