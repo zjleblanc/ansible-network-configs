@@ -10,7 +10,10 @@ bgp_global:
         update_source: Loopback10
     -   neighbor_address: 8.8.8.8
         remote_as: '888'
+        update_source: Loopback10
     -   neighbor_address: 9.9.9.9
+        next_hop_self:
+            set: true
         remote_as: '999'
 hostname:
     hostname: csr1000v-1
@@ -48,7 +51,7 @@ l2_interfaces:
 -   name: BDI10
 l3_interfaces:
 -   ipv4:
-    -   address: 10.0.33.1/24
+    -   address: 192.168.1.1/24
     name: BDI10
 -   ipv4:
     -   address: 10.10.20.48/24
