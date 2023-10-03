@@ -153,6 +153,8 @@ interfaces:
 -   description: Added with RESTCONF
     enabled: true
     name: Loopback10055
+-   enabled: false
+    name: Loopback101
 -   enabled: true
     name: Loopback105
 -   description: Configured by RESTCONF ga jadi
@@ -200,6 +202,7 @@ l2_interfaces:
 -   name: Loopback56
 -   name: Loopback99
 -   name: Loopback100
+-   name: Loopback101
 -   name: Loopback105
 -   name: Loopback109
 -   name: Loopback113
@@ -232,6 +235,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 172.16.100.1/24
     name: Loopback10055
+-   name: Loopback101
 -   ipv4:
     -   address: 10.100.2.2/24
     name: Loopback105
@@ -287,6 +291,7 @@ lacp_interfaces:
 -   name: loopback56
 -   name: loopback99
 -   name: loopback100
+-   name: loopback101
 -   name: loopback105
 -   name: loopback109
 -   name: loopback113
