@@ -86,7 +86,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (the golden config)
+-   description: Port to Fabric (golden config)
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
