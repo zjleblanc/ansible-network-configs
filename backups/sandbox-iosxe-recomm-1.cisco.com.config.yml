@@ -1,5 +1,55 @@
 acl_interfaces: {}
-acls: {}
+acls:
+-   acls:
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 10
+            source:
+                host: 1.1.1.1
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 20
+            source:
+                host: 2.2.2.2
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 30
+            source:
+                host: 3.3.3.3
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 40
+            source:
+                host: 4.4.4.4
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 50
+            source:
+                host: 5.5.5.5
+        acl_type: extended
+        name: my_acl
+    afi: ipv4
 bgp_global:
     as_number: '16501'
     bgp:
@@ -26,7 +76,7 @@ interfaces:
 -   description: Network Interface
     enabled: false
     name: GigabitEthernet2
--   description: Ringcam
+-   description: Testing-RingCam
     enabled: true
     name: GigabitEthernet3
 -   enabled: true
@@ -79,7 +129,21 @@ lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
-ntp_global: {}
+ntp_global:
+    servers:
+    -   server: 1.1.1.1
+    -   server: 10.1.200.11
+    -   server: 10.1.200.12
+    -   server: 10.1.200.13
+    -   server: 10.1.200.14
+    -   server: 2.2.2.2
+    -   server: 3.3.3.3
+    -   server: 4.4.4.4
+    -   server: 5.5.5.5
+    -   server: 6.6.6.6
+    -   server: 7.7.7.7
+    -   server: 8.8.8.8
+    -   server: 9.9.9.9
 ospfv2:
     processes:
     -   passive_interfaces:
