@@ -2,21 +2,6 @@ acl_interfaces: {}
 acls:
 -   acls:
     -   aces:
-        -   grant: permit
-            sequence: 10
-            source:
-                address: 100.64.10.0
-                wildcard_bits: 0.0.0.255
-        acl_type: standard
-        name: CGNAT_DYNAMIC
-    -   aces:
-        -   grant: permit
-            sequence: 10
-            source:
-                host: 100.64.10.10
-        acl_type: standard
-        name: CGNAT_STATIC
-    -   aces:
         -   destination:
                 any: true
             grant: permit
