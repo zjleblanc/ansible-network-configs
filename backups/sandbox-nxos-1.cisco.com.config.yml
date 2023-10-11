@@ -450,6 +450,8 @@ bgp_address_family:
 bgp_global:
     as_number: '65501'
     neighbors:
+    -   neighbor_address: 1.1.1.1
+        remote_as: '65509'
     -   inherit:
             peer_session: PEER-BGP
         neighbor_address: 3.3.3.3

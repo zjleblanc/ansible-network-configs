@@ -51,7 +51,7 @@ interfaces:
 -   description: test gnmi set
     enabled: true
     name: Loopback555
--   description: '***TEST 1000 LOOPBACK****'
+-   description: '**2TEST 1000 LOOPBACK2****'
     enabled: true
     name: Loopback1000
 -   enabled: true

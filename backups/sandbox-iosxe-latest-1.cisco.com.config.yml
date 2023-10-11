@@ -1,7 +1,120 @@
+acl_interfaces: {}
+acls:
+-   acls:
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            protocol: ip
+            sequence: 10
+            source:
+                address: 192.168.1.0
+                wildcard_bits: 0.0.0.255
+        acl_type: extended
+        name: NAT-ACL
+    -   aces:
+        -   destination:
+                host: 1.1.1.1
+            grant: permit
+            protocol: ip
+            sequence: 10
+            source:
+                any: true
+        acl_type: extended
+        name: Test
+    -   acl_type: extended
+        name: meraki-fqdn-dns
+    afi: ipv4
+bgp_global: {}
+hostname:
+    hostname: Cat8000V
+interfaces:
+-   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
+    enabled: true
+    name: GigabitEthernet1
+-   description: Network Interface
+    enabled: false
+    name: GigabitEthernet2
+-   description: Network Interface
+    enabled: false
+    name: GigabitEthernet3
+-   enabled: true
+    name: Loopback0
+-   enabled: true
+    name: Loopback10
+-   description: Configured by RESTCONF ga jadi
+    enabled: true
+    name: Loopback109
+-   enabled: true
+    name: VirtualPortGroup0
+l2_interfaces:
+-   name: Loopback0
+-   name: Loopback10
+-   name: Loopback109
+-   name: VirtualPortGroup0
+-   name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+l3_interfaces:
+-   ipv4:
+    -   address: 10.10.20.48/24
+    name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+-   ipv4:
+    -   address: 10.0.0.1/24
+    name: Loopback0
+-   name: Loopback10
+-   ipv4:
+    -   address: 10.255.255.9/24
+    name: Loopback109
+-   ipv4:
+    -   address: 192.168.1.1/24
+    name: VirtualPortGroup0
 lacp:
     system:
         priority: 32768
+lacp_interfaces:
+-   name: loopback0
+-   name: loopback10
+-   name: loopback109
+-   name: GigabitEthernet1
+-   name: GigabitEthernet2
+-   name: GigabitEthernet3
+lag_interfaces: {}
+lldp_global: {}
 lldp_interfaces: []
+logging_global: {}
+ntp_global: {}
+ospfv2: {}
+prefix_lists: {}
+route_maps: {}
+service:
+    call_home: true
+    counters: 0
+    dhcp: true
+    password_recovery: true
+    private_config_encryption: true
+    prompt: true
+    slave_log: true
+    timestamps:
+    -   datetime_options:
+            msec: true
+        msg: debug
+        timestamp: datetime
+    -   datetime_options:
+            msec: true
+        msg: log
+        timestamp: datetime
+snmp_server: {}
+static_routes:
+-   address_families:
+    -   afi: ipv4
+        routes:
+        -   dest: 0.0.0.0/0
+            next_hops:
+            -   forward_router_address: 10.10.20.254
+                interface: GigabitEthernet1
 vlans:
 -   mtu: 1500
     name: default
