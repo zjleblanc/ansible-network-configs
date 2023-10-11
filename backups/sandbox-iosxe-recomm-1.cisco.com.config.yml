@@ -1,127 +1,70 @@
 acl_interfaces: {}
-acls:
--   acls:
-    -   aces:
-        -   destination:
-                any: true
-            grant: permit
-            log:
-                set: true
-            protocol: ip
-            sequence: 10
-            source:
-                host: 1.1.1.1
-        -   destination:
-                any: true
-            grant: permit
-            log:
-                set: true
-            protocol: ip
-            sequence: 20
-            source:
-                host: 2.2.2.2
-        -   destination:
-                any: true
-            grant: permit
-            log:
-                set: true
-            protocol: ip
-            sequence: 30
-            source:
-                host: 3.3.3.3
-        -   destination:
-                any: true
-            grant: permit
-            log:
-                set: true
-            protocol: ip
-            sequence: 40
-            source:
-                host: 4.4.4.4
-        -   destination:
-                any: true
-            grant: permit
-            log:
-                set: true
-            protocol: ip
-            sequence: 50
-            source:
-                host: 5.5.5.5
-        acl_type: extended
-        name: my_acl
-    afi: ipv4
-bgp_global:
-    as_number: '16501'
-    bgp:
-        log_neighbor_changes: true
-    neighbors:
-    -   neighbor_address: 7.7.7.7
-        remote_as: '777'
-        update_source: Loopback10
-    -   neighbor_address: 8.8.8.8
-        remote_as: '888'
-        update_source: Loopback10
-    -   neighbor_address: 9.9.9.9
-        next_hop_self:
-            set: true
-        remote_as: '999'
+acls: {}
+bgp_global: {}
 hostname:
     hostname: csr1000v-1
 interfaces:
--   enabled: true
-    name: BDI10
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
 -   description: Network Interface
     enabled: false
     name: GigabitEthernet2
--   description: Testing-RingCam
-    enabled: true
+-   description: Network Interface
+    enabled: false
     name: GigabitEthernet3
--   enabled: true
-    name: Loopback10
--   description: UPDATED from PUT23
+-   description: my wesley's test ansible interface
     enabled: true
-    name: Loopback1000
--   description: UPDATED from PUT23
+    name: Loopback11
+-   description: my test ansible interface
     enabled: true
-    name: Loopback1001
--   description: Agregada by Teslag Networks
+    name: Loopback17
+-   description: my test ansible interface
     enabled: true
-    name: Loopback401
+    name: Loopback30
+-   description: my test ansible interface
+    enabled: true
+    name: Loopback55
+-   description: my test ansible interface
+    enabled: true
+    name: Loopback741
 l2_interfaces:
--   name: Loopback10
--   name: Loopback401
--   name: Loopback1000
--   name: Loopback1001
+-   name: Loopback11
+-   name: Loopback17
+-   name: Loopback30
+-   name: Loopback55
+-   name: Loopback741
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
--   name: BDI10
 l3_interfaces:
--   ipv4:
-    -   address: 192.168.1.1/24
-    name: BDI10
 -   ipv4:
     -   address: 10.10.20.48/24
     name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
--   name: Loopback10
--   name: Loopback1000
--   name: Loopback1001
+-   name: Loopback11
 -   ipv4:
-    -   address: 1.1.1.1/32
-    name: Loopback401
+    -   address: 192.168.17.17/24
+    name: Loopback17
+-   ipv4:
+    -   address: 172.16.30.1/32
+    name: Loopback30
+-   ipv4:
+    -   address: 172.16.3.229/24
+    name: Loopback55
+-   ipv4:
+    -   address: 197.222.123.214/32
+    name: Loopback741
 lacp:
     system:
         priority: 32768
 lacp_interfaces:
--   name: loopback10
--   name: loopback401
--   name: loopback1000
--   name: loopback1001
+-   name: loopback11
+-   name: loopback17
+-   name: loopback30
+-   name: loopback55
+-   name: loopback741
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
@@ -129,30 +72,8 @@ lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
-ntp_global:
-    servers:
-    -   server: 1.1.1.1
-    -   server: 10.1.200.11
-    -   server: 10.1.200.12
-    -   server: 10.1.200.13
-    -   server: 10.1.200.14
-    -   server: 2.2.2.2
-    -   server: 3.3.3.3
-    -   server: 4.4.4.4
-    -   server: 5.5.5.5
-    -   server: 6.6.6.6
-    -   server: 7.7.7.7
-    -   server: 8.8.8.8
-    -   server: 9.9.9.9
-ospfv2:
-    processes:
-    -   passive_interfaces:
-            interface:
-                name:
-                - Loopback401
-                set_interface: true
-        process_id: 1
-        router_id: 1.1.1.1
+ntp_global: {}
+ospfv2: {}
 prefix_lists: {}
 route_maps: {}
 service:
