@@ -13,32 +13,48 @@ jobs:
         with:
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
 
-      - name: Get changed files
-        id: changed-files
+      - name: Get changed host files
+        id: changed-host-files
         uses: tj-actions/changed-files@v39
         with:
-          files: configs/*.config.yml
+          files: configs/hosts/*.config.yml
 
-      - name: List all changed files
+      - name: List all changed hosts files
         id: extract-hosts
         run: |
           hosts=()
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${{ steps.changed-host-files.outputs.all_changed_files }}; do
             hosts+=(${file:8:-11})
           done
           echo "num_hosts=${#hosts[@]}" >> $GITHUB_OUTPUT
           echo "target_hosts=$hosts" >> $GITHUB_OUTPUT
 
+      - name: Get changed group files
+        id: changed-group-files
+        uses: tj-actions/changed-files@v39
+        with:
+          files: configs/groups/*.config.yml
+
+      - name: List all changed hosts files
+        id: extract-groups
+        run: |
+          groups=()
+          for file in ${{ steps.changed-group-files.outputs.all_changed_files }}; do
+          groups+=(${file:8:-11})
+          done
+          echo "num_groups=${#groups[@]}" >> $GITHUB_OUTPUT
+          echo "target_groups=$groups" >> $GITHUB_OUTPUT
+
       - name: Launch Job Template
         id: launch_job
-        if: steps.extract-hosts.outputs.num_hosts > 0
+        if: steps.extract-hosts.outputs.num_hosts > 0 || steps.extract-groups.outputs.num_groups > 0
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
           method: 'POST'
           bearerToken: ${{ secrets.AAP_TOKEN }}
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"extra_vars": {"_hosts": "${{ join(steps.extract-hosts.outputs.target_hosts) }}", "config_repo_name": "ansible-network-configs"}}'
+          data: '{"extra_vars": {"_hosts": "${{ join(steps.extract-hosts.outputs.target_hosts) }}", "_groups": "${{ join(steps.extract-groups.outputs.target_groups) }}", "config_repo_name": "ansible-network-configs"}}'
     
       - name: Show Response
         if: steps.launch_job.conclusion == 'success'

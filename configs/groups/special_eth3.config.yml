@@ -1,0 +1,4 @@
+interfaces:
+-   description: Ansible Group Config (special_eth3)
+    enabled: false
+    name: GigabitEthernet3

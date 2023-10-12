@@ -2,27 +2,36 @@ name: network-config-as-code-manual
 run-name: ${{ github.actor }} configure network devices (manual)
 on:
   workflow_dispatch:
-    inputs:
+    inputs: 
       target_hosts:
         description: 'Specify target hosts'     
         required: true
         default: 'sandbox-iosxe-latest-1.cisco.com'
+      target_groups:
+          description: 'Specify target groups'     
+          required: true
+          default: 'special_eth3'
 
 jobs:
   apply_network_configurations:
     runs-on: ubuntu-latest
     steps:
-    - name: Launch Job Template
-      id: launch_job
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
-        method: 'POST'
-        bearerToken: ${{ secrets.AAP_TOKEN }}
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"extra_vars": {"_hosts": "${{ github.event.inputs.target_hosts }}", "config_repo_name": "ansible-network-configs"}}'
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
 
-    - name: Show Response
-      run: |
-        echo ${{ steps.launch_job.outputs.response }}
-        echo ${{ steps.launch_job.outputs.headers }}
+      - name: Launch Job Template
+        id: launch_job
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://controller.autodotes.com/api/v2/job_templates/84/launch/'
+          method: 'POST'
+          bearerToken: ${{ secrets.AAP_TOKEN }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"extra_vars": {"_hosts": "${{ github.event.inputs.target_hosts }}", "_groups": "${{ github.event.inputs.target_groups }}", "config_repo_name": "ansible-network-configs"}}'
+    
+      - name: Show Response
+        if: steps.launch_job.conclusion == 'success'
+        run: |
+          echo ${{ steps.launch_job.outputs.response }}
+          echo ${{ steps.launch_job.outputs.headers }}
