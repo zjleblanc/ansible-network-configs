@@ -45,11 +45,31 @@ interfaces:
 -   description: Configured by RESTCONF ga jadi
     enabled: true
     name: Loopback109
+-   description: Configuring "Loopback32"
+    enabled: true
+    name: Loopback32
+-   description: Configuring "Loopback33"
+    enabled: true
+    name: Loopback33
+-   enabled: true
+    name: Loopback35
+-   enabled: true
+    name: Loopback36
+-   enabled: true
+    name: Loopback37
+-   enabled: true
+    name: Loopback38
 -   enabled: true
     name: VirtualPortGroup0
 l2_interfaces:
 -   name: Loopback0
 -   name: Loopback10
+-   name: Loopback32
+-   name: Loopback33
+-   name: Loopback35
+-   name: Loopback36
+-   name: Loopback37
+-   name: Loopback38
 -   name: Loopback109
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
@@ -64,10 +84,22 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.0.0.1/24
     name: Loopback0
--   name: Loopback10
+-   ipv4:
+    -   address: 10.55.55.254/24
+    name: Loopback10
 -   ipv4:
     -   address: 10.255.255.9/24
     name: Loopback109
+-   ipv4:
+    -   address: 25.65.25.23/25
+    name: Loopback32
+-   ipv4:
+    -   address: 26.65.25.23/25
+    name: Loopback33
+-   name: Loopback35
+-   name: Loopback36
+-   name: Loopback37
+-   name: Loopback38
 -   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
@@ -77,6 +109,12 @@ lacp:
 lacp_interfaces:
 -   name: loopback0
 -   name: loopback10
+-   name: loopback32
+-   name: loopback33
+-   name: loopback35
+-   name: loopback36
+-   name: loopback37
+-   name: loopback38
 -   name: loopback109
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2

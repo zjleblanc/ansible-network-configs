@@ -7,47 +7,16 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: N2
-    enabled: false
+-   description: Configured by RESTCONF
+    enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
     enabled: false
     name: GigabitEthernet3
--   description: loopbackfortest
-    enabled: true
-    name: Loopback0
--   description: my wesley's test ansible interface
-    enabled: true
-    name: Loopback11
--   description: my test ansible interface
-    enabled: true
-    name: Loopback17
--   enabled: false
-    name: Loopback200
--   description: my test ansible interface author haithem
-    enabled: true
-    name: Loopback22
--   description: my test ansible interface
-    enabled: true
-    name: Loopback30
--   description: my test ansible interface
-    enabled: true
-    name: Loopback55
--   description: my test ansible interface
-    enabled: true
-    name: Loopback741
 -   enabled: true
-    name: Port-channel1
+    name: Loopback21
 l2_interfaces:
--   name: Loopback0
--   name: Loopback11
--   name: Loopback17
--   name: Loopback22
--   name: Loopback30
--   name: Loopback55
--   name: Loopback200
--   name: Loopback741
--   name: Port-channel1
+-   name: Loopback21
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
@@ -55,50 +24,20 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.48/24
     name: GigabitEthernet1
--   name: GigabitEthernet2
+-   ipv4:
+    -   address: 10.255.255.1/24
+    name: GigabitEthernet2
 -   name: GigabitEthernet3
--   name: Loopback0
--   name: Loopback11
--   ipv4:
-    -   address: 192.168.17.17/24
-    name: Loopback17
--   name: Loopback200
--   ipv4:
-    -   address: 192.168.6.10/24
-    name: Loopback22
--   ipv4:
-    -   address: 172.16.30.1/32
-    name: Loopback30
--   ipv4:
-    -   address: 172.16.3.229/24
-    name: Loopback55
--   ipv4:
-    -   address: 197.222.123.214/32
-    name: Loopback741
--   ipv4:
-    -   dhcp:
-            enable: true
-    name: Port-channel1
+-   name: Loopback21
 lacp:
     system:
         priority: 32768
 lacp_interfaces:
--   name: loopback0
--   name: loopback11
--   name: loopback17
--   name: loopback22
--   name: loopback30
--   name: loopback55
--   name: loopback200
--   name: loopback741
--   name: Port-channel1
+-   name: loopback21
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
-lag_interfaces:
--   members:
-    - {}
-    name: Port-channel1
+lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
@@ -131,6 +70,3 @@ static_routes:
             next_hops:
             -   forward_router_address: 10.10.20.254
                 interface: GigabitEthernet1
-        -   dest: 5.201.182.1/32
-            next_hops:
-            -   interface: Null0

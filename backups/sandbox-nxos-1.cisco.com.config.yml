@@ -8,7 +8,6 @@ acl_interfaces:
 -   name: Vlan7
 -   name: Vlan8
 -   name: Vlan9
--   name: Vlan10
 -   name: Vlan100
 -   name: Vlan101
 -   name: Vlan102
@@ -19,14 +18,11 @@ acl_interfaces:
 -   name: Vlan120
 -   name: Vlan992
 -   name: Vlan2005
--   name: port-channel1
 -   name: port-channel11
 -   name: port-channel12
 -   name: port-channel100
 -   name: port-channel1000
 -   name: port-channel1000.1
--   name: nve1
--   name: loopback0
 -   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
@@ -139,9 +135,6 @@ bfd_interfaces:
     name: Vlan9
 -   bfd: enable
     echo: enable
-    name: Vlan10
--   bfd: enable
-    echo: enable
     name: Vlan100
 -   bfd: enable
     echo: enable
@@ -172,9 +165,6 @@ bfd_interfaces:
     name: Vlan2005
 -   bfd: enable
     echo: enable
-    name: port-channel1
--   bfd: enable
-    echo: enable
     name: port-channel11
 -   bfd: enable
     echo: enable
@@ -188,12 +178,6 @@ bfd_interfaces:
 -   bfd: enable
     echo: enable
     name: port-channel1000.1
--   bfd: enable
-    echo: enable
-    name: nve1
--   bfd: enable
-    echo: enable
-    name: loopback0
 -   bfd: enable
     echo: enable
     name: Ethernet1/1
@@ -437,35 +421,10 @@ bfd_interfaces:
 -   bfd: enable
     echo: enable
     name: loopback234
-bgp_address_family:
-    address_family:
-    -   advertise_l2vpn_evpn: true
-        afi: ipv4
-        redistribute:
-        -   protocol: direct
-            route_map: TAG
-        safi: unicast
-        vrf: TENANT1
-    as_number: '65501'
-bgp_global:
-    as_number: '65501'
-    neighbors:
-    -   neighbor_address: 1.1.1.1
-        remote_as: '65509'
-    -   inherit:
-            peer_session: PEER-BGP
-        neighbor_address: 3.3.3.3
-        remote_as: '777'
-    -   neighbor_address: 8.8.8.8
-        password:
-            encryption: 3
-            key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
-        remote_as: '65000'
-    router_id: 1.1.1.33
-    vrfs:
-    -   vrf: TENANT1
+bgp_address_family: {}
+bgp_global: {}
 hostname:
-    hostname: sbx-ao
+    hostname: LEAF1
 hsrp_interfaces: []
 interfaces:
 -   name: Vlan1
@@ -477,22 +436,18 @@ interfaces:
 -   name: Vlan7
 -   name: Vlan8
 -   name: Vlan9
--   name: Vlan10
 -   description: mgmt svi - DEMO PLEASE DON'T TOUCH
     name: Vlan100
 -   description: prod svi - DEMO PLEASE DON'T TOUCH
     enabled: true
-    fabric_forwarding_anycast_gateway: true
     mtu: '9192'
     name: Vlan101
 -   description: dev svi - DEMO PLEASE DON'T TOUCH
     enabled: true
-    fabric_forwarding_anycast_gateway: true
     mtu: '9192'
     name: Vlan102
 -   description: test svi - DEMO PLEASE DON'T TOUCH
     enabled: true
-    fabric_forwarding_anycast_gateway: true
     mtu: '9192'
     name: Vlan103
 -   description: security svi - DEMO PLEASE DON'T TOUCH
@@ -508,8 +463,6 @@ interfaces:
     ip_forward: true
     mtu: '912'
     name: Vlan2005
--   mode: layer3
-    name: port-channel1
 -   name: port-channel11
 -   mode: layer3
     name: port-channel12
@@ -517,15 +470,16 @@ interfaces:
 -   mode: layer3
     name: port-channel1000
 -   name: port-channel1000.1
--   enabled: true
-    name: nve1
--   description: Configured with NX-API REST
+-   description: Updated description
     name: Ethernet1/1
--   name: Ethernet1/2
--   enabled: true
+-   description: link towards SM-LF01-2
+    name: Ethernet1/2
+-   description: link towards SM-LF01-2
+    enabled: true
     mode: layer3
     name: Ethernet1/3
--   name: Ethernet1/4
+-   description: link towards SM-LF01-2
+    name: Ethernet1/4
 -   description: L3 Link
     name: Ethernet1/5
 -   mtu: '9216'
@@ -534,7 +488,9 @@ interfaces:
     name: Ethernet1/7
 -   name: Ethernet1/8
 -   name: Ethernet1/9
--   description: Ringcam
+-   description: My Description
+    enabled: true
+    mode: layer3
     name: Ethernet1/10
 -   name: Ethernet1/11
 -   name: Ethernet1/12
@@ -550,7 +506,8 @@ interfaces:
 -   name: Ethernet1/22
 -   name: Ethernet1/23
 -   name: Ethernet1/24
--   name: Ethernet1/25
+-   mtu: '9216'
+    name: Ethernet1/25
 -   name: Ethernet1/26
 -   name: Ethernet1/27
 -   name: Ethernet1/28
@@ -567,10 +524,13 @@ interfaces:
 -   name: Ethernet1/37
 -   name: Ethernet1/38
 -   name: Ethernet1/39
--   name: Ethernet1/40
--   name: Ethernet1/41
+-   mode: layer3
+    name: Ethernet1/40
+-   mode: layer3
+    name: Ethernet1/41
 -   name: Ethernet1/42
--   name: Ethernet1/43
+-   mode: layer3
+    name: Ethernet1/43
 -   name: Ethernet1/44
 -   name: Ethernet1/45
 -   name: Ethernet1/46
@@ -629,7 +589,6 @@ l2_interfaces:
 -   name: Vlan7
 -   name: Vlan8
 -   name: Vlan9
--   name: Vlan10
 -   name: Vlan100
 -   name: Vlan101
 -   name: Vlan102
@@ -640,7 +599,6 @@ l2_interfaces:
 -   name: Vlan120
 -   name: Vlan992
 -   name: Vlan2005
--   name: port-channel1
 -   mode: trunk
     name: port-channel11
     trunk:
@@ -649,7 +607,6 @@ l2_interfaces:
 -   name: port-channel100
 -   name: port-channel1000
 -   name: port-channel1000.1
--   name: nve1
 -   name: Ethernet1/1
 -   mode: trunk
     name: Ethernet1/2
@@ -744,61 +701,83 @@ l2_interfaces:
 -   name: loopback200
 -   name: loopback234
 l3_interfaces:
--   name: Vlan1
--   name: Vlan2
--   name: Vlan3
--   name: Vlan4
--   name: Vlan5
--   name: Vlan6
--   name: Vlan7
--   name: Vlan8
--   name: Vlan9
--   name: Vlan10
--   name: Vlan100
+-   ipv6_redirects: false
+    name: Vlan1
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan2
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan3
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan4
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan5
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan6
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan7
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan8
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan9
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan100
+    redirects: false
 -   ipv4:
     -   address: 10.2.1.1/24
         tag: 4082018
+    ipv6_redirects: false
     name: Vlan101
+    redirects: false
 -   ipv4:
     -   address: 10.2.2.1/24
         tag: 4082018
+    ipv6_redirects: false
     name: Vlan102
+    redirects: false
 -   ipv4:
     -   address: 10.2.3.1/24
         tag: 4082018
+    ipv6_redirects: false
     name: Vlan103
--   ipv4:
-    -   address: 172.16.104.1/24
+    redirects: false
+-   ipv6_redirects: false
     name: Vlan104
--   ipv4:
-    -   address: 172.16.105.1/24
+    redirects: false
+-   ipv6_redirects: false
     name: Vlan105
--   ipv4:
-    -   address: 192.168.0.1/24
-    -   address: 192.168.100.1/24
-        secondary: true
+    redirects: false
+-   ipv6_redirects: false
     name: Vlan110
     redirects: false
--   ipv4:
-    -   address: 10.20.3.1/24
+-   ipv6_redirects: false
     name: Vlan120
+    redirects: false
 -   ipv6:
     -   address: 2001:db8::218:baff:fed8:239d/30
+    ipv6_redirects: false
     name: Vlan992
--   name: Vlan2005
--   name: port-channel1
+    redirects: false
+-   ipv6_redirects: false
+    name: Vlan2005
+    redirects: false
 -   name: port-channel11
 -   name: port-channel12
 -   name: port-channel100
 -   name: port-channel1000
 -   dot1q: 33
     name: port-channel1000.1
--   name: nve1
 -   name: Ethernet1/1
 -   name: Ethernet1/2
--   ipv4:
-    -   address: 176.16.10.254/24
-    name: Ethernet1/3
+-   name: Ethernet1/3
 -   name: Ethernet1/4
 -   name: Ethernet1/5
 -   name: Ethernet1/6
@@ -835,10 +814,13 @@ l3_interfaces:
 -   name: Ethernet1/37
 -   name: Ethernet1/38
 -   name: Ethernet1/39
--   name: Ethernet1/40
--   name: Ethernet1/41
+-   evpn_multisite_tracking: fabric-tracking
+    name: Ethernet1/40
+-   evpn_multisite_tracking: fabric-tracking
+    name: Ethernet1/41
 -   name: Ethernet1/42
--   name: Ethernet1/43
+-   evpn_multisite_tracking: dci-tracking
+    name: Ethernet1/43
 -   name: Ethernet1/44
 -   name: Ethernet1/45
 -   name: Ethernet1/46
@@ -863,42 +845,20 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.95/24
     name: mgmt0
--   ipv4:
-    -   address: 172.16.0.1/32
-    name: loopback1
--   ipv4:
-    -   address: 2.2.2.2/32
-    name: loopback2
+-   name: loopback1
+-   name: loopback2
 -   name: loopback5
--   ipv4:
-    -   address: 10.10.10.10/32
-    name: loopback10
--   ipv4:
-    -   address: 10.19.19.1/24
-    name: loopback19
--   ipv4:
-    -   address: 20.20.20.20/32
-    name: loopback20
--   ipv4:
-    -   address: 24.24.24.24/32
-    name: loopback24
--   ipv4:
-    -   address: 10.29.29.1/24
-    name: loopback29
+-   name: loopback10
+-   name: loopback19
+-   name: loopback20
+-   name: loopback24
+-   name: loopback29
 -   name: loopback30
--   ipv4:
-    -   address: 35.35.35.35/32
-    name: loopback35
+-   name: loopback35
 -   name: loopback45
--   ipv4:
-    -   address: 10.98.98.1/24
-    name: loopback98
--   ipv4:
-    -   address: 10.99.99.1/24
-    name: loopback99
--   ipv4:
-    -   address: 10.1.1.10/32
-    name: loopback100
+-   name: loopback98
+-   name: loopback99
+-   name: loopback100
 -   name: loopback200
 -   ipv4:
     -   address: 1.1.1.5/32
@@ -906,10 +866,6 @@ l3_interfaces:
 lacp: {}
 lacp_interfaces: []
 lag_interfaces:
--   members:
-    -   member: Ethernet1/7
-        mode: active
-    name: port-channel1
 -   members:
     -   member: Ethernet1/2
     name: port-channel11
@@ -1021,13 +977,7 @@ ntp_global:
 ospf_interfaces:
 -   name: Ethernet1/1
 -   name: Ethernet1/2
--   address_family:
-    -   afi: ipv4
-        processes:
-        -   area:
-                area_id: 0.0.0.0
-            process_id: '10'
-    name: Ethernet1/3
+-   name: Ethernet1/3
 -   name: Ethernet1/4
 -   name: Ethernet1/5
 -   name: Ethernet1/6
@@ -1090,31 +1040,12 @@ ospf_interfaces:
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: Vlan1
--   name: Vlan10
--   address_family:
-    -   afi: ipv4
-        processes:
-        -   area:
-                area_id: 0.0.0.0
-            process_id: '1'
-    name: Vlan100
+-   name: Vlan100
 -   name: Vlan101
 -   name: Vlan102
 -   name: Vlan103
--   address_family:
-    -   afi: ipv4
-        processes:
-        -   area:
-                area_id: 0.0.0.0
-            process_id: '1'
-    name: Vlan104
--   address_family:
-    -   afi: ipv4
-        processes:
-        -   area:
-                area_id: 0.0.0.0
-            process_id: '1'
-    name: Vlan105
+-   name: Vlan104
+-   name: Vlan105
 -   name: Vlan110
 -   name: Vlan120
 -   name: Vlan2
@@ -1144,18 +1075,12 @@ ospf_interfaces:
 -   name: loopback98
 -   name: loopback99
 -   name: mgmt0
--   name: nve1
--   name: port-channel1
 -   name: port-channel100
 -   name: port-channel1000
 -   name: port-channel1000.1
 -   name: port-channel11
 -   name: port-channel12
-ospfv2:
-    processes:
-    -   process_id: '1'
-    -   process_id: '10'
-    -   process_id: '100'
+ospfv2: {}
 ospfv3: {}
 prefix_lists: []
 route_maps:
@@ -1243,18 +1168,6 @@ snmp_server:
             group: network-admin
             user: jasencio
 static_routes:
--   address_families:
-    -   afi: ipv4
-        routes:
-        -   dest: 0.0.0.0/0
-            next_hops:
-            -   forward_router_address: 1.1.1.1
-        -   dest: 2.2.2.0/24
-            next_hops:
-            -   forward_router_address: 1.1.1.1
-        -   dest: 10.100.100.100/32
-            next_hops:
-            -   forward_router_address: 192.168.1.1
 -   address_families:
     -   afi: ipv4
         routes:

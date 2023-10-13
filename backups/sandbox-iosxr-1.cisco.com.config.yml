@@ -1,5 +1,7 @@
 acl_interfaces:
 -   name: BVI10
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.106
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -34,13 +36,20 @@ bgp_neighbor_address_family:
     neighbors:
     -   address_family:
         -   afi: ipv4
+            default_originate:
+                set: true
             route_policy:
                 inbound: PERMIT-ALL
                 outbound: PERMIT-ALL
             safi: unicast
         neighbor_address: 192.0.2.1
-hostname: {}
+hostname:
+    hostname: Router1
 interfaces:
+-   enabled: true
+    name: Bundle-Ether1
+-   enabled: true
+    name: Bundle-Ether1.106
 -   description: '***TEST LOOPBACK****'
     enabled: true
     name: Loopback100
@@ -48,7 +57,7 @@ interfaces:
     name: Loopback234
 -   enabled: true
     name: Loopback400
--   description: test gnmi set
+-   description: test gnmi x
     enabled: true
     name: Loopback555
 -   description: '**2TEST 1000 LOOPBACK2****'
@@ -60,14 +69,14 @@ interfaces:
     name: Loopback9001
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
--   description: '"test"'
-    enabled: false
+-   description: Connection to LAN
+    enabled: true
     name: GigabitEthernet0/0/0/0
--   description: test
+-   description: Connection to WAN
     enabled: false
     name: GigabitEthernet0/0/0/1
 -   description: test
-    enabled: false
+    enabled: true
     name: GigabitEthernet0/0/0/2
 -   description: test
     enabled: false
@@ -82,6 +91,8 @@ interfaces:
     enabled: true
     name: TenGigE0/0/0/0
 l2_interfaces:
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.106
 -   name: Loopback100
 -   name: Loopback234
 -   name: Loopback400
@@ -99,6 +110,10 @@ l2_interfaces:
 -   name: GigabitEthernet0/0/0/6
 -   name: TenGigE0/0/0/0
 l3_interfaces:
+-   name: Bundle-Ether1
+-   ipv4:
+    -   address: 10.10.10.1/31
+    name: Bundle-Ether1.106
 -   ipv4:
     -   address: 1.1.1.100/32
     name: Loopback100
@@ -119,8 +134,12 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.175/24
     name: MgmtEth0/RP0/CPU0/0
--   name: GigabitEthernet0/0/0/0
--   name: GigabitEthernet0/0/0/1
+-   ipv4:
+    -   address: 192.168.1.1/24
+    name: GigabitEthernet0/0/0/0
+-   ipv4:
+    -   address: 10.1.1.1/30
+    name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
 -   name: GigabitEthernet0/0/0/4
@@ -129,6 +148,8 @@ l3_interfaces:
 -   name: TenGigE0/0/0/0
 lacp: {}
 lacp_interfaces:
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.106
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -137,9 +158,21 @@ lacp_interfaces:
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
 -   name: TenGigE0/0/0/0
-lag_interfaces: []
+lag_interfaces:
+-   links:
+        min_active: 1
+    members:
+    -   member: GigabitEthernet0/0/0/2
+        mode: active
+    name: Bundle-Ether1
+-   members:
+    -   member: GigabitEthernet0/0/0/2
+        mode: active
+    name: Bundle-Ether1
 lldp_global: {}
 lldp_interfaces:
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.106
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -270,4 +303,11 @@ snmp_server:
             full_raise: true
             status: true
         vrrp_events: true
-static_routes: []
+static_routes:
+-   address_families:
+    -   afi: ipv4
+        routes:
+        -   dest: 0.0.0.0/0
+            next_hops:
+            -   interface: Null0
+        safi: unicast
