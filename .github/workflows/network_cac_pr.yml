@@ -24,7 +24,7 @@ jobs:
         run: |
           hosts=()
           for file in ${{ steps.changed-host-files.outputs.all_changed_files }}; do
-            hosts+=(${file:8:-11})
+            hosts+=(${file:14:-11})
           done
           echo "num_hosts=${#hosts[@]}" >> $GITHUB_OUTPUT
           echo "target_hosts=$hosts" >> $GITHUB_OUTPUT
@@ -40,7 +40,7 @@ jobs:
         run: |
           groups=()
           for file in ${{ steps.changed-group-files.outputs.all_changed_files }}; do
-          groups+=(${file:8:-11})
+          groups+=(${file:15:-11})
           done
           echo "num_groups=${#groups[@]}" >> $GITHUB_OUTPUT
           echo "target_groups=$groups" >> $GITHUB_OUTPUT
