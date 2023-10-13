@@ -86,7 +86,7 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Port to Fabric (autodotes demo video)
+-   description: NI GE 2
     enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
