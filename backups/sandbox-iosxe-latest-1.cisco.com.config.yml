@@ -2,6 +2,24 @@ acl_interfaces: {}
 acls:
 -   acls:
     -   aces:
+        -   grant: permit
+            sequence: 10
+            source:
+                address: 10.4.95.0
+                wildcard_bits: 0.0.0.127
+        -   grant: permit
+            sequence: 20
+            source:
+                address: 100.0.0.0
+                wildcard_bits: 0.255.255.255
+        -   grant: permit
+            sequence: 30
+            source:
+                address: 172.26.0.0
+                wildcard_bits: 0.0.255.255
+        acl_type: standard
+        name: MANAGEMENT
+    -   aces:
         -   destination:
                 any: true
             grant: permit
@@ -12,6 +30,28 @@ acls:
                 wildcard_bits: 0.0.0.255
         acl_type: extended
         name: NAT-ACL
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            protocol: ip
+            sequence: 10
+            source:
+                address: 1.1.1.0
+                wildcard_bits: 0.0.0.255
+        acl_type: extended
+        name: TEST
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            protocol: ip
+            sequence: 10
+            source:
+                address: 1.1.1.0
+                wildcard_bits: 0.0.0.255
+        acl_type: extended
+        name: TEST2
     -   aces:
         -   destination:
                 host: 1.1.1.1
@@ -29,77 +69,180 @@ bgp_global: {}
 hostname:
     hostname: Cat8000V
 interfaces:
--   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
+-   description: Configured by Ansible
     enabled: true
     name: GigabitEthernet1
--   description: Network Interface
-    enabled: false
+-   description: Cust 4 mgmt
+    enabled: true
+    name: GigabitEthernet1.2000
+-   description: Cust 4 data
+    enabled: true
+    name: GigabitEthernet1.2001
+-   description: Cust 5 mgmt
+    enabled: true
+    name: GigabitEthernet1.2002
+-   description: Cust 5 data
+    enabled: true
+    name: GigabitEthernet1.2003
+-   description: Cust 6 mgmt
+    enabled: true
+    name: GigabitEthernet1.2004
+-   description: Cust 6 data
+    enabled: true
+    name: GigabitEthernet1.2005
+-   description: Cust 10 data ceased
+    enabled: true
+    name: GigabitEthernet1.2100
+-   description: Cust 1 data
+    enabled: true
+    name: GigabitEthernet1.500
+-   description: Cust 2 data
+    enabled: true
+    name: GigabitEthernet1.501
+-   description: Cust 3 data
+    enabled: true
+    name: GigabitEthernet1.502
+-   description: NETCONF-CONFIGURED PORT
+    enabled: true
     name: GigabitEthernet2
--   description: Network Interface
-    enabled: false
+-   description: Son Konfig Netconf
+    enabled: true
     name: GigabitEthernet3
 -   enabled: true
     name: Loopback0
+-   description: Network to 101
+    enabled: true
+    name: Loopback1
 -   enabled: true
     name: Loopback10
--   description: Configured by RESTCONF ga jadi
+-   description: test-loopback
     enabled: true
-    name: Loopback109
--   description: Configuring "Loopback32"
+    name: Loopback12
+-   description: configured by JM
     enabled: true
-    name: Loopback32
--   description: Configuring "Loopback33"
+    name: Loopback123
+-   description: Added by DaddyZ
     enabled: true
-    name: Loopback33
+    name: Loopback2662
+-   description: DevNet Expert
+    enabled: false
+    name: Loopback40
+-   description: DevNet Expert
+    enabled: true
+    name: Loopback41
+-   description: DevNet Expert
+    enabled: false
+    name: Loopback42
+-   description: DevNet Expert
+    enabled: true
+    name: Loopback43
+-   description: DevNet Expert
+    enabled: false
+    name: Loopback44
+-   description: DevNet Expert
+    enabled: true
+    name: Loopback45
 -   enabled: true
-    name: Loopback35
+    name: Loopback66
 -   enabled: true
-    name: Loopback36
--   enabled: true
-    name: Loopback37
--   enabled: true
-    name: Loopback38
+    name: Loopback666
 -   enabled: true
     name: VirtualPortGroup0
 l2_interfaces:
 -   name: Loopback0
+-   name: Loopback1
 -   name: Loopback10
--   name: Loopback32
--   name: Loopback33
--   name: Loopback35
--   name: Loopback36
--   name: Loopback37
--   name: Loopback38
--   name: Loopback109
+-   name: Loopback12
+-   name: Loopback40
+-   name: Loopback41
+-   name: Loopback42
+-   name: Loopback43
+-   name: Loopback44
+-   name: Loopback45
+-   name: Loopback66
+-   name: Loopback123
+-   name: Loopback666
+-   name: Loopback2662
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
+-   name: GigabitEthernet1.500
+-   name: GigabitEthernet1.501
+-   name: GigabitEthernet1.502
+-   name: GigabitEthernet1.2000
+-   name: GigabitEthernet1.2001
+-   name: GigabitEthernet1.2002
+-   name: GigabitEthernet1.2003
+-   name: GigabitEthernet1.2004
+-   name: GigabitEthernet1.2005
+-   name: GigabitEthernet1.2100
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
 l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.48/24
     name: GigabitEthernet1
--   name: GigabitEthernet2
--   name: GigabitEthernet3
+-   ipv4:
+    -   address: 10.255.200.1/24
+    name: GigabitEthernet1.2000
+-   ipv4:
+    -   address: 10.255.201.1/24
+    name: GigabitEthernet1.2001
+-   ipv4:
+    -   address: 10.255.202.1/24
+    name: GigabitEthernet1.2002
+-   ipv4:
+    -   address: 10.255.203.1/24
+    name: GigabitEthernet1.2003
+-   ipv4:
+    -   address: 10.255.204.1/24
+    name: GigabitEthernet1.2004
+-   ipv4:
+    -   address: 10.255.205.1/24
+    name: GigabitEthernet1.2005
+-   name: GigabitEthernet1.2100
+-   ipv4:
+    -   address: 10.255.100.1/24
+    name: GigabitEthernet1.500
+-   ipv4:
+    -   address: 10.255.101.1/24
+    name: GigabitEthernet1.501
+-   ipv4:
+    -   address: 10.255.102.1/24
+    name: GigabitEthernet1.502
+-   ipv4:
+    -   address: 12.12.12.2/24
+    name: GigabitEthernet2
+-   ipv4:
+    -   address: 13.13.13.13/24
+    name: GigabitEthernet3
 -   ipv4:
     -   address: 10.0.0.1/24
     name: Loopback0
 -   ipv4:
-    -   address: 10.55.55.254/24
-    name: Loopback10
+    -   address: 1.1.1.1/32
+    name: Loopback1
+-   name: Loopback10
 -   ipv4:
-    -   address: 10.255.255.9/24
-    name: Loopback109
+    -   address: 56.56.56.56/32
+    name: Loopback12
 -   ipv4:
-    -   address: 25.65.25.23/25
-    name: Loopback32
+    -   address: 192.168.100.100/24
+    name: Loopback123
 -   ipv4:
-    -   address: 26.65.25.23/25
-    name: Loopback33
--   name: Loopback35
--   name: Loopback36
--   name: Loopback37
--   name: Loopback38
+    -   address: 10.2.3.26/24
+    name: Loopback2662
+-   name: Loopback40
+-   name: Loopback41
+-   name: Loopback42
+-   name: Loopback43
+-   name: Loopback44
+-   name: Loopback45
+-   ipv4:
+    -   address: 7.10.7.10/24
+    name: Loopback66
+-   ipv4:
+    -   address: 100.64.66.6/32
+    name: Loopback666
 -   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
@@ -108,15 +251,30 @@ lacp:
         priority: 32768
 lacp_interfaces:
 -   name: loopback0
+-   name: loopback1
 -   name: loopback10
--   name: loopback32
--   name: loopback33
--   name: loopback35
--   name: loopback36
--   name: loopback37
--   name: loopback38
--   name: loopback109
+-   name: loopback12
+-   name: loopback40
+-   name: loopback41
+-   name: loopback42
+-   name: loopback43
+-   name: loopback44
+-   name: loopback45
+-   name: loopback66
+-   name: loopback123
+-   name: loopback666
+-   name: loopback2662
 -   name: GigabitEthernet1
+-   name: GigabitEthernet1.500
+-   name: GigabitEthernet1.501
+-   name: GigabitEthernet1.502
+-   name: GigabitEthernet1.2000
+-   name: GigabitEthernet1.2001
+-   name: GigabitEthernet1.2002
+-   name: GigabitEthernet1.2003
+-   name: GigabitEthernet1.2004
+-   name: GigabitEthernet1.2005
+-   name: GigabitEthernet1.2100
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
 lag_interfaces: {}
@@ -124,7 +282,16 @@ lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
 ntp_global: {}
-ospfv2: {}
+ospfv2:
+    processes:
+    -   network:
+        -   address: 1.1.1.0
+            area: '0'
+            wildcard_bits: 0.0.0.255
+        -   address: 192.168.0.0
+            area: '0'
+            wildcard_bits: 0.0.255.255
+        process_id: 1
 prefix_lists: {}
 route_maps: {}
 service:
@@ -144,7 +311,10 @@ service:
             msec: true
         msg: log
         timestamp: datetime
-snmp_server: {}
+snmp_server:
+    communities:
+    -   name: devnet
+        ro: true
 static_routes:
 -   address_families:
     -   afi: ipv4
