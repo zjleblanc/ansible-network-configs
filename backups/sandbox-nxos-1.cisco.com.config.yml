@@ -1,5 +1,6 @@
 acl_interfaces:
 -   name: Vlan1
+-   name: Vlan50
 -   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
@@ -76,6 +77,9 @@ bfd_interfaces:
 -   bfd: enable
     echo: enable
     name: Vlan1
+-   bfd: enable
+    echo: enable
+    name: Vlan50
 -   bfd: enable
     echo: enable
     name: Ethernet1/1
@@ -286,7 +290,9 @@ hostname: {}
 hsrp_interfaces: []
 interfaces:
 -   name: Vlan1
--   name: Ethernet1/1
+-   name: Vlan50
+-   description: test
+    name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -353,10 +359,15 @@ interfaces:
 -   name: mgmt0
 -   name: loopback0
 -   name: loopback5
--   name: loopback99
+-   description: Full intf config via NETCONF
+    name: loopback99
 l2_interfaces:
 -   name: Vlan1
--   name: Ethernet1/1
+-   name: Vlan50
+-   mode: trunk
+    name: Ethernet1/1
+    trunk:
+        allowed_vlans: 2100,2500
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -426,6 +437,9 @@ l2_interfaces:
 -   name: loopback99
 l3_interfaces:
 -   name: Vlan1
+-   ipv4:
+    -   address: 10.255.251.2/24
+    name: Vlan50
 -   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
@@ -500,7 +514,7 @@ l3_interfaces:
     -   address: 10.10.15.1/24
     name: loopback5
 -   ipv4:
-    -   address: 10.10.99.1/24
+    -   address: 10.99.99.1/24
     name: loopback99
 lacp: {}
 lacp_interfaces: []
@@ -642,6 +656,7 @@ ospf_interfaces:
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: Vlan1
+-   name: Vlan50
 -   name: loopback0
 -   name: loopback5
 -   name: loopback99
@@ -677,3 +692,22 @@ vlans:
     name: default
     state: active
     vlan_id: 1
+-   enabled: true
+    mode: ce
+    name: Dev
+    state: active
+    vlan_id: 30
+-   enabled: true
+    mode: ce
+    state: active
+    vlan_id: 50
+-   enabled: true
+    mode: ce
+    name: WIFI
+    state: active
+    vlan_id: 100
+-   enabled: true
+    mode: ce
+    name: Mgmt
+    state: active
+    vlan_id: 101

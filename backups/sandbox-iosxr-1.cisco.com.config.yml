@@ -673,8 +673,6 @@ lldp_interfaces:
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
 logging_global:
-    console:
-        state: disabled
     hosts:
     -   host: 10.10.20.175
         port: default
