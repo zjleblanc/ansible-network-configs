@@ -376,6 +376,17 @@ interfaces:
     name: GigabitEthernet0/0/0/5
 -   enabled: false
     name: GigabitEthernet0/0/0/6
+l2_interfaces:
+-   name: Loopback50
+-   name: Loopback100
+-   name: Loopback555
+-   name: Loopback1234
+-   name: MgmtEth0/RP0/CPU0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
 lacp: {}
 lacp_interfaces:
 -   name: GigabitEthernet0/0/0/1
