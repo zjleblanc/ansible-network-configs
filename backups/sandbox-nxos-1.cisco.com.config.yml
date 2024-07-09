@@ -457,6 +457,7 @@ bgp_global:
     neighbors:
     -   neighbor_address: 172.16.0.2
         remote_as: '65535'
+    -   neighbor_address: 3.3.3.3
     router_id: 172.16.0.1
     timers:
         prefix_peer_timeout: 30
@@ -519,6 +520,8 @@ interfaces:
 -   description: Link to lnx-01 - port - nic1
     name: Ethernet1/9
 -   description: Link to lnx-03 - port - nic3
+    enabled: true
+    mode: layer3
     name: Ethernet1/10
 -   description: My Description
     enabled: true
@@ -656,9 +659,7 @@ l2_interfaces:
 -   access:
         vlan: 44
     name: Ethernet1/9
--   access:
-        vlan: 23
-    name: Ethernet1/10
+-   name: Ethernet1/10
 -   name: Ethernet1/11
 -   name: Ethernet1/11.10
 -   name: Ethernet1/12
@@ -859,7 +860,7 @@ l3_interfaces:
     -   address: 10.10.20.95/24
     name: mgmt0
 -   ipv4:
-    -   address: 1.1.1.1/24
+    -   address: 1.1.1.1/32
     name: loopback0
 -   ipv4:
     -   address: 10.10.15.1/24
@@ -993,7 +994,14 @@ ospf_interfaces:
 -   name: Ethernet1/7
 -   name: Ethernet1/8
 -   name: Ethernet1/9
--   name: Ethernet1/10
+-   address_family:
+    -   afi: ipv4
+        network: point-to-point
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: underlay
+    name: Ethernet1/10
 -   name: Ethernet1/11
 -   name: Ethernet1/11.10
 -   name: Ethernet1/12
@@ -1056,7 +1064,13 @@ ospf_interfaces:
 -   name: Vlan251
 -   name: Vlan50
 -   name: Vlan500
--   name: loopback0
+-   address_family:
+    -   afi: ipv4
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: underlay
+    name: loopback0
 -   name: loopback100
 -   name: loopback101
 -   name: loopback14
@@ -1082,8 +1096,10 @@ ospf_interfaces:
 -   name: port-channel801
 ospfv2:
     processes:
-    -   process_id: '1'
+    -   process_id: underlay
         router_id: 1.1.1.1
+        vrfs:
+        -   vrf: test
 ospfv3: {}
 prefix_lists: []
 route_maps: []

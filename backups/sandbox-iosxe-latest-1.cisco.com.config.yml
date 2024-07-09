@@ -33,7 +33,13 @@ acls:
     -   acl_type: extended
         name: meraki-fqdn-dns
     afi: ipv4
-bgp_global: {}
+bgp_global:
+    as_number: '100'
+    bgp:
+        log_neighbor_changes: true
+    neighbors:
+    -   neighbor_address: 11.0.0.2
+        remote_as: '200'
 hostname:
     hostname: Cat8000V
 interfaces:
