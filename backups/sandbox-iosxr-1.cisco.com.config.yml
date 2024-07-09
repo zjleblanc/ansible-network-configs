@@ -1,505 +1,368 @@
 acl_interfaces:
--   name: Bundle-Ether56
--   name: Bundle-Ether56.9
--   name: GigabitEthernet0/0/0/0
--   name: GigabitEthernet0/0/0/0.600
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
--   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
--   name: Loopback0
--   name: Loopback1
--   name: Loopback10
 -   name: Loopback100
--   name: Loopback101
--   name: Loopback111
--   name: Loopback20
--   name: Loopback22
--   name: Loopback30
--   name: Loopback34
--   name: Loopback40
+-   name: Loopback1234
+-   name: Loopback50
 -   name: Loopback555
--   name: Loopback56
--   name: Loopback57
--   name: Loopback58
--   name: Loopback66
--   name: Loopback911
--   name: Loopback912
--   name: Loopback913
--   name: Loopback914
--   name: Loopback915
--   name: Loopback916
--   name: Loopback917
 -   name: MgmtEth0/RP0/CPU0/0
 acls:
 -   acls:
     -   aces:
-        -   remark: '*** ACL FOR SNMPv3 OF IRIS ***'
-            sequence: 1
-        name: '2999'
-    -   aces:
-        -   remark: For troubleshoting
-            sequence: 1
         -   destination:
-                host: 196.30.42.171
-            grant: permit
-            protocol: icmp
-            sequence: 5
-            source:
-                host: 41.181.190.20
-        -   destination:
-                host: 41.181.190.20
+                any: true
             grant: permit
             protocol: icmp
             sequence: 10
             source:
-                host: 196.30.42.171
-        -   destination:
-                address: 41.57.81.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 11
-            source:
-                any: true
-        -   destination:
-                address: 41.57.86.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 12
-            source:
-                any: true
-        -   destination:
-                address: 41.57.88.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 13
-            source:
-                any: true
-        -   destination:
-                address: 41.57.89.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 14
-            source:
-                any: true
-        -   destination:
-                address: 41.57.90.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 15
-            source:
-                any: true
-        name: '3105'
-    -   aces:
-        -   destination:
-                address: 41.181.247.24
-                wildcard_bits: 0.0.0.7
-            grant: permit
-            protocol: ipv4
-            sequence: 5
-            source:
-                any: true
-        -   destination:
-                address: 103.30.136.0
-                wildcard_bits: 0.0.3.255
-            grant: permit
-            protocol: ipv4
-            sequence: 10
-            source:
-                any: true
-        -   destination:
-                address: 103.30.136.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 15
-            source:
-                any: true
-        -   destination:
-                address: 103.30.137.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 20
-            source:
-                any: true
-        -   destination:
-                address: 103.30.138.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 25
-            source:
-                any: true
-        -   destination:
-                address: 103.30.139.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 30
-            source:
-                any: true
-        -   destination:
-                address: 59.153.124.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 35
-            source:
-                any: true
-        -   destination:
-                address: 59.153.125.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 40
-            source:
-                any: true
-        -   destination:
-                address: 59.153.126.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 45
-            source:
-                any: true
-        -   destination:
-                address: 59.153.127.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 50
-            source:
-                any: true
-        name: ANTIDDOS-GH-90
-    -   aces:
-        -   destination:
-                address: 198.51.100.0
-                wildcard_bits: 0.0.0.255
-            grant: deny
-            protocol: tcp
-            sequence: 10
-            source:
                 any: true
         -   destination:
                 any: true
+                port_protocol:
+                    eq: domain
             grant: permit
             protocol: tcp
             sequence: 20
             source:
                 any: true
-        name: IPv4-ACL
-    -   aces:
         -   destination:
-                address: 41.190.54.0
-                wildcard_bits: 0.0.1.255
-            grant: permit
-            protocol: ipv4
-            sequence: 5
-            source:
                 any: true
-        -   destination:
-                address: 41.215.176.0
-                wildcard_bits: 0.0.15.255
+                port_protocol:
+                    eq: www
             grant: permit
-            protocol: ipv4
-            sequence: 10
-            source:
-                any: true
-        -   destination:
-                address: 41.216.64.0
-                wildcard_bits: 0.0.31.255
-            grant: permit
-            protocol: ipv4
-            sequence: 15
-            source:
-                any: true
-        -   destination:
-                address: 41.222.16.0
-                wildcard_bits: 0.0.7.255
-            grant: permit
-            protocol: ipv4
-            sequence: 20
-            source:
-                any: true
-        -   destination:
-                address: 41.223.116.0
-                wildcard_bits: 0.0.3.255
-            grant: permit
-            protocol: ipv4
-            sequence: 25
-            source:
-                any: true
-        -   destination:
-                address: 41.223.116.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
+            protocol: tcp
             sequence: 30
             source:
                 any: true
         -   destination:
-                address: 41.223.117.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 35
-            source:
                 any: true
-        -   destination:
-                address: 41.223.118.0
-                wildcard_bits: 0.0.0.255
+                port_protocol:
+                    eq: https
             grant: permit
-            protocol: ipv4
+            protocol: tcp
             sequence: 40
             source:
                 any: true
         -   destination:
-                address: 41.223.119.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 45
-            source:
                 any: true
-        -   destination:
-                address: 196.8.211.0
-                wildcard_bits: 0.0.0.255
             grant: permit
-            protocol: ipv4
+            protocol: icmp
             sequence: 50
             source:
                 any: true
         -   destination:
-                address: 213.193.32.0
-                wildcard_bits: 0.0.7.255
-            grant: permit
-            protocol: ipv4
-            sequence: 55
-            source:
                 any: true
-        name: PEALL-ZM-VLANALL
-    -   aces:
-        -   destination:
-                address: 41.220.64.0
-                wildcard_bits: 0.0.1.255
+                port_protocol:
+                    eq: domain
             grant: permit
-            protocol: ipv4
-            sequence: 5
-            source:
-                any: true
-        -   destination:
-                address: 41.220.68.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 10
-            source:
-                any: true
-        -   destination:
-                address: 41.220.72.0
-                wildcard_bits: 0.0.1.255
-            grant: permit
-            protocol: ipv4
-            sequence: 15
-            source:
-                any: true
-        -   destination:
-                address: 41.220.77.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 20
-            source:
-                any: true
-        -   destination:
-                address: 83.143.8.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 25
-            source:
-                any: true
-        -   destination:
-                address: 83.143.9.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 30
-            source:
-                any: true
-        -   destination:
-                address: 83.143.10.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 35
-            source:
-                any: true
-        -   destination:
-                address: 83.143.11.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 40
-            source:
-                any: true
-        -   destination:
-                address: 193.238.28.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 45
-            source:
-                any: true
-        -   destination:
-                address: 193.238.29.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 50
-            source:
-                any: true
-        -   destination:
-                address: 193.238.30.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 55
-            source:
-                any: true
-        -   destination:
-                address: 193.238.31.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
+            protocol: tcp
             sequence: 60
             source:
                 any: true
         -   destination:
-                address: 197.210.236.0
-                wildcard_bits: 0.0.3.255
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 70
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 80
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            sequence: 90
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: tcp
+            sequence: 100
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 110
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 120
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            sequence: 130
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: tcp
+            sequence: 140
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 150
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 160
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            sequence: 170
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: tcp
+            sequence: 180
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 190
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 200
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            sequence: 210
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: tcp
+            sequence: 220
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 230
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 240
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            sequence: 250
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: domain
+            grant: permit
+            protocol: tcp
+            sequence: 260
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: www
+            grant: permit
+            protocol: tcp
+            sequence: 270
+            source:
+                any: true
+        -   destination:
+                any: true
+                port_protocol:
+                    eq: https
+            grant: permit
+            protocol: tcp
+            sequence: 280
+            source:
+                any: true
+        name: '100'
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            protocol_options:
+                icmp:
+                    echo_reply: true
+            sequence: 10
+            source:
+                address: 10.10.2.0
+                wildcard_bits: 0.0.0.255
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            protocol_options:
+                icmp:
+                    echo_reply: true
+            sequence: 20
+            source:
+                address: 10.10.2.0
+                wildcard_bits: 0.0.0.255
+        -   destination:
+                any: true
+            grant: permit
+            protocol: icmp
+            protocol_options:
+                icmp:
+                    echo_reply: true
+            sequence: 30
+            source:
+                address: 10.10.2.0
+                wildcard_bits: 0.0.0.255
+        name: TEST_123
+    -   aces:
+        -   destination:
+                address: 172.31.255.0
+                wildcard_bits: 0.0.0.15
+            grant: permit
+            protocol: ipv4
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                address: 172.31.255.16
+                wildcard_bits: 0.0.0.15
+            grant: permit
+            protocol: ipv4
+            sequence: 20
+            source:
+                any: true
+        -   destination:
+                address: 22.10.10.8
+                wildcard_bits: 0.0.0.22
+            grant: permit
+            protocol: ipv4
+            sequence: 40
+            source:
+                any: true
+        -   destination:
+                address: 22.10.10.2
+                wildcard_bits: 0.0.0.24
+            grant: permit
+            protocol: ipv4
+            sequence: 55
+            source:
+                any: true
+        -   destination:
+                address: 122.184.67.64
+                wildcard_bits: 0.0.0.31
             grant: permit
             protocol: ipv4
             sequence: 65
             source:
                 any: true
-        -   destination:
-                address: 197.210.248.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 70
-            source:
-                any: true
-        -   destination:
-                address: 197.210.249.0
-                wildcard_bits: 0.0.0.255
-            grant: permit
-            protocol: ipv4
-            sequence: 75
-            source:
-                any: true
-        -   destination:
-                address: 209.212.111.104
-                wildcard_bits: 0.0.0.7
-            grant: permit
-            protocol: ipv4
-            sequence: 80
-            source:
-                any: true
-        name: UKPE02-NG-VLAN3861-1
+        name: WI-MAX-MANAGEMENT-BACKHAUL
     afi: ipv4
 bgp_address_family:
     address_family:
     -   afi: ipv4
         networks:
-        -   network: 0.0.0.0/0
+        -   network: 1.1.1.100/32
         safi: unicast
-    as_number: '19086'
+    as_number: '65000'
 bgp_global:
-    as_number: '19086'
-    bgp:
-        router_id: 10.10.10.10
+    as_number: '65000'
     neighbors:
-    -   neighbor_address: 94.77.192.134
-    vrfs:
-    -   vrf: snis:tor:wsib
+    -   neighbor_address: 192.168.1.5
+        remote_as: 65000
 bgp_neighbor_address_family:
-    as_number: '19086'
-hostname:
-    hostname: rw
+    as_number: '65000'
+    neighbors:
+    -   address_family:
+        -   afi: ipv4
+            safi: unicast
+        neighbor_address: 192.168.1.5
+hostname: {}
 interfaces:
 -   enabled: true
-    name: Bundle-Ether56
--   description: test
-    enabled: true
-    name: Bundle-Ether56.9
--   enabled: true
-    name: Loopback0
--   enabled: true
-    name: Loopback1
--   enabled: true
-    name: Loopback10
--   enabled: true
-    name: Loopback20
--   enabled: true
-    name: Loopback22
--   enabled: true
-    name: Loopback30
--   enabled: true
-    name: Loopback34
--   enabled: true
-    name: Loopback40
--   description: THIS IS A TEST
-    enabled: true
-    name: Loopback56
--   enabled: true
-    name: Loopback57
--   enabled: true
-    name: Loopback58
--   enabled: true
-    name: Loopback66
+    name: Loopback50
 -   description: '***TEST LOOPBACK****'
     enabled: true
     name: Loopback100
--   enabled: true
-    name: Loopback101
--   enabled: true
-    name: Loopback111
 -   description: PRUEBA_KV
     enabled: true
     name: Loopback555
--   enabled: true
-    name: Loopback911
--   enabled: true
-    name: Loopback912
--   enabled: true
-    name: Loopback913
--   enabled: true
-    name: Loopback914
--   enabled: true
-    name: Loopback915
--   enabled: true
-    name: Loopback916
--   description: '"For Testing"'
+-   description: '***TEST LOOPBACK****'
     enabled: true
-    name: Loopback917
+    name: Loopback1234
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
--   description: AGAIN_TEST
-    enabled: true
-    name: GigabitEthernet0/0/0/0
--   description: Test Description
-    enabled: true
-    name: GigabitEthernet0/0/0/0.600
 -   description: test
     enabled: true
     name: GigabitEthernet0/0/0/1
@@ -509,243 +372,39 @@ interfaces:
 -   description: test
     enabled: true
     name: GigabitEthernet0/0/0/3
--   enabled: true
-    name: GigabitEthernet0/0/0/4
--   enabled: true
+-   enabled: false
     name: GigabitEthernet0/0/0/5
--   enabled: true
+-   enabled: false
     name: GigabitEthernet0/0/0/6
-l2_interfaces:
--   name: Bundle-Ether56
--   name: Bundle-Ether56.9
--   name: Loopback0
--   name: Loopback1
--   name: Loopback10
--   name: Loopback20
--   name: Loopback22
--   name: Loopback30
--   name: Loopback34
--   name: Loopback40
--   name: Loopback56
--   name: Loopback57
--   name: Loopback58
--   name: Loopback66
--   name: Loopback100
--   name: Loopback101
--   name: Loopback111
--   name: Loopback555
--   name: Loopback911
--   name: Loopback912
--   name: Loopback913
--   name: Loopback914
--   name: Loopback915
--   name: Loopback916
--   name: Loopback917
--   name: MgmtEth0/RP0/CPU0/0
--   name: GigabitEthernet0/0/0/0
--   encapsulation:
-        dot1q: 600
-    name: GigabitEthernet0/0/0/0.600
--   name: GigabitEthernet0/0/0/1
--   name: GigabitEthernet0/0/0/2
--   name: GigabitEthernet0/0/0/3
--   name: GigabitEthernet0/0/0/4
--   name: GigabitEthernet0/0/0/5
--   name: GigabitEthernet0/0/0/6
-l3_interfaces:
--   name: Bundle-Ether56
--   name: Bundle-Ether56.9
--   ipv4:
-    -   address: 10.255.255.1/32
-    name: Loopback0
--   name: Loopback1
--   ipv4:
-    -   address: 10.10.10.10/32
-    name: Loopback10
--   ipv4:
-    -   address: 192.168.1.1/24
-    name: Loopback20
--   ipv4:
-    -   address: 10.10.22.22/32
-    name: Loopback22
--   ipv4:
-    -   address: 192.168.2.1/24
-    name: Loopback30
--   ipv4:
-    -   address: 10.10.34.34/32
-    name: Loopback34
--   ipv4:
-    -   address: 192.168.4.1/24
-    name: Loopback40
--   ipv4:
-    -   address: 56.56.56.56/32
-    name: Loopback56
--   ipv4:
-    -   address: 192.168.57.1/24
-    name: Loopback57
--   ipv4:
-    -   address: 192.168.58.1/24
-    name: Loopback58
--   ipv4:
-    -   address: 7.10.7.10/24
-    name: Loopback66
--   ipv4:
-    -   address: 1.1.1.100/32
-    name: Loopback100
--   ipv4:
-    -   address: 192.0.2.18/24
-    -   address: 203.0.113.4/24
-        secondary: true
-    ipv6:
-    -   address: 2001:db8:f00d::1/64
-    name: Loopback101
--   ipv4:
-    -   address: 10.10.10.1/24
-    name: Loopback111
--   ipv4:
-    -   address: 192.168.55.1/24
-    name: Loopback555
--   name: Loopback911
--   name: Loopback912
--   name: Loopback913
--   name: Loopback914
--   name: Loopback915
--   name: Loopback916
--   ipv4:
-    -   address: 10.10.10.20/32
-    name: Loopback917
--   ipv4:
-    -   address: 10.10.20.175/24
-    name: MgmtEth0/RP0/CPU0/0
--   ipv4:
-    -   address: 192.168.145.12/24
-    name: GigabitEthernet0/0/0/0
--   name: GigabitEthernet0/0/0/0.600
--   ipv4:
-    -   address: 10.1.4.4/24
-    name: GigabitEthernet0/0/0/1
--   ipv4:
-    -   address: 10.10.10.1/28
-    name: GigabitEthernet0/0/0/2
--   ipv4:
-    -   address: 10.6.7.7/24
-    name: GigabitEthernet0/0/0/3
--   ipv4:
-    -   address: 10.8.9.9/24
-    name: GigabitEthernet0/0/0/4
--   name: GigabitEthernet0/0/0/5
--   name: GigabitEthernet0/0/0/6
 lacp: {}
 lacp_interfaces:
--   name: Bundle-Ether56
--   name: Bundle-Ether56.9
--   name: GigabitEthernet0/0/0/0
--   name: GigabitEthernet0/0/0/0.600
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
--   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
-lag_interfaces:
--   members:
-    -   member: GigabitEthernet0/0/0/5
-        mode: active
-    -   member: GigabitEthernet0/0/0/6
-        mode: active
-    name: Bundle-Ether56
--   members:
-    -   member: GigabitEthernet0/0/0/5
-        mode: active
-    -   member: GigabitEthernet0/0/0/6
-        mode: active
-    name: Bundle-Ether56
+lag_interfaces: []
 lldp_global: {}
 lldp_interfaces:
--   name: Bundle-Ether56
--   name: Bundle-Ether56.9
--   name: GigabitEthernet0/0/0/0
--   name: GigabitEthernet0/0/0/0.600
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
--   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
-logging_global:
-    hosts:
-    -   host: 10.10.20.175
-        port: default
-        vrf: default
-    source_interfaces:
-    -   interface: Loopback1
-ntp_global:
-    servers:
-    -   server: 41.181.190.80
-        vrf: MTN.NET-OAM
-    -   server: 41.181.190.90
-        vrf: MTN.NET-OAM
-    source_interface: Loopback1
-ospf_interfaces:
--   address_family:
-    -   afi: ipv4
-        passive: true
-        processes:
-        -   area:
-                area_id: '0'
-            process_id: '10'
-    name: Loopback0
-    type: loopback
--   address_family:
-    -   afi: ipv4
-        network: point-to-point
-        processes:
-        -   area:
-                area_id: '0'
-            process_id: '10'
-    name: GigabitEthernet0/0/0/2
-    type: gigabitethernet
--   address_family:
-    -   afi: ipv4
-        network: point-to-point
-        processes:
-        -   area:
-                area_id: '0'
-            process_id: '10'
-    name: GigabitEthernet0/0/0/3
-    type: gigabitethernet
--   address_family:
-    -   afi: ipv4
-        network: point-to-point
-        processes:
-        -   area:
-                area_id: '0'
-            process_id: '10'
-    name: GigabitEthernet0/0/0/4
-    type: gigabitethernet
+logging_global: {}
+ntp_global: {}
+ospf_interfaces: []
 ospfv2:
     processes:
-    -   process_id: '10'
-        router_id: 10.255.255.1
-    -   process_id: '34'
-    -   process_id: '55'
-    -   process_id: '99'
-    -   process_id: '999'
-    -   process_id: '1000'
-ospfv3: {}
+    -   process_id: '1'
+ospfv3:
+    processes:
+    -   process_id: '1'
 prefix_lists: []
 snmp_server:
     communities:
     -   name: public
         ro: true
-    -   name: private
-        rw: true
-    -   acl_v4: to
-        name: CommunityString
-    interfaces:
-    -   name: Loopback0
-    location: United
-    trap_source: Loopback1
     traps:
         addrpool:
             high: true
