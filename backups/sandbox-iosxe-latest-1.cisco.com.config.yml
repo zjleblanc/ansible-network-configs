@@ -1,12 +1,4 @@
-acl_interfaces:
--   access_groups:
-    -   acls:
-        -   direction: in
-            name: 1
-        -   direction: out
-            name: 1
-        afi: ipv4
-    name: Loopback200
+acl_interfaces: {}
 acls:
 -   acls:
     -   aces:
@@ -33,21 +25,15 @@ acls:
     -   acl_type: extended
         name: meraki-fqdn-dns
     afi: ipv4
-bgp_global:
-    as_number: '100'
-    bgp:
-        log_neighbor_changes: true
-    neighbors:
-    -   neighbor_address: 11.0.0.2
-        remote_as: '200'
+bgp_global: {}
 hostname:
     hostname: Cat8000V
 interfaces:
--   description: Configured by Ansible
+-   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Ansible network demo
-    enabled: true
+-   description: Network Interface
+    enabled: false
     name: GigabitEthernet2
 -   description: Network Interface
     enabled: false
@@ -57,36 +43,14 @@ interfaces:
 -   enabled: true
     name: Loopback10
 -   enabled: true
-    name: Loopback100
--   description: ENAUI
-    enabled: true
-    name: Loopback101
--   description: My Interface Description
-    enabled: true
-    name: Loopback200
--   enabled: true
     name: VirtualPortGroup0
--   enabled: true
-    name: Vlan104
--   description: Test1
-    enabled: true
-    name: Vlan5
--   description: Test1
-    enabled: true
-    name: Vlan6
 l2_interfaces:
 -   name: Loopback0
 -   name: Loopback10
--   name: Loopback100
--   name: Loopback101
--   name: Loopback200
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
--   name: Vlan5
--   name: Vlan6
--   name: Vlan104
 l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.48/24
@@ -97,52 +61,24 @@ l3_interfaces:
     -   address: 10.0.0.1/24
     name: Loopback0
 -   name: Loopback10
--   name: Loopback100
--   ipv4:
-    -   address: 1.1.1.1/32
-    name: Loopback101
--   ipv4:
-    -   address: 200.1.1.1/32
-    ipv6:
-    -   address: dhcp
-    -   address: FE80::9656:D028:8652:66B7
-        link_local: true
-    name: Loopback200
 -   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
--   ipv4:
-    -   address: 10.20.30.1/24
-    name: Vlan104
--   name: Vlan5
--   name: Vlan6
 lacp:
     system:
         priority: 32768
 lacp_interfaces:
 -   name: loopback0
 -   name: loopback10
--   name: loopback100
--   name: loopback101
--   name: loopback200
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
--   name: Vlan5
--   name: Vlan6
--   name: Vlan104
 lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
 ntp_global: {}
-ospfv2:
-    processes:
-    -   areas:
-        -   area_id: '0'
-            authentication:
-                message_digest: true
-        process_id: 10
+ospfv2: {}
 prefix_lists: {}
 route_maps: {}
 service:
@@ -162,12 +98,7 @@ service:
             msec: true
         msg: log
         timestamp: datetime
-snmp_server:
-    communities:
-    -   name: PRIVATE
-        rw: true
-    -   name: PUBLIC
-        ro: true
+snmp_server: {}
 static_routes:
 -   address_families:
     -   afi: ipv4
