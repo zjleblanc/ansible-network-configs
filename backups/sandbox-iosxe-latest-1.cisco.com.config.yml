@@ -2,6 +2,14 @@ acl_interfaces: {}
 acls:
 -   acls:
     -   aces:
+        -   grant: permit
+            sequence: 20
+            source:
+                address: 192.168.20.0
+                wildcard_bits: 0.0.0.255
+        acl_type: standard
+        name: '87'
+    -   aces:
         -   destination:
                 any: true
             grant: permit
@@ -25,7 +33,10 @@ acls:
     -   acl_type: extended
         name: meraki-fqdn-dns
     afi: ipv4
-bgp_global: {}
+bgp_global:
+    as_number: '200'
+    bgp:
+        log_neighbor_changes: true
 hostname:
     hostname: Cat8000V
 interfaces:
@@ -39,18 +50,33 @@ interfaces:
     enabled: false
     name: GigabitEthernet3
 -   enabled: true
-    name: Loopback0
--   enabled: true
     name: Loopback10
 -   enabled: true
+    name: Loopback121
+-   description: Added with RESTCONF
+    enabled: true
+    name: Loopback1234
+-   description: SDFSDF
+    enabled: true
+    name: Loopback44
+-   description: configured using python
+    enabled: true
+    name: Loopback99
+-   enabled: true
     name: VirtualPortGroup0
+-   enabled: true
+    name: Vlan100
 l2_interfaces:
--   name: Loopback0
 -   name: Loopback10
+-   name: Loopback44
+-   name: Loopback99
+-   name: Loopback121
+-   name: Loopback1234
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
+-   name: Vlan100
 l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.48/24
@@ -58,29 +84,69 @@ l3_interfaces:
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
 -   ipv4:
-    -   address: 10.0.0.1/24
-    name: Loopback0
--   name: Loopback10
+    -   address: 10.10.10.10/32
+    name: Loopback10
+-   ipv4:
+    -   address: 192.1.1.1/24
+    name: Loopback121
+-   ipv4:
+    -   address: 1.2.3.4/32
+    name: Loopback1234
+-   ipv4:
+    -   address: 2.2.2.2/30
+    name: Loopback44
+-   ipv4:
+    -   address: 1.1.1.1/24
+    name: Loopback99
 -   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
+-   name: Vlan100
 lacp:
     system:
         priority: 32768
 lacp_interfaces:
--   name: loopback0
 -   name: loopback10
+-   name: loopback44
+-   name: loopback99
+-   name: loopback121
+-   name: loopback1234
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
+-   name: Vlan100
 lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
-logging_global: {}
-ntp_global: {}
-ospfv2: {}
+logging_global:
+    hosts:
+    -   host: 171.1.1.1
+ntp_global:
+    servers:
+    -   server: 216.239.35.8
+ospfv2:
+    processes:
+    -   network:
+        -   address: 1.0.0.0
+            area: '0'
+            wildcard_bits: 0.255.255.255
+        process_id: 100
+        router_id: 10.1.10.1
 prefix_lists: {}
-route_maps: {}
+route_maps:
+-   entries:
+    -   action: permit
+        sequence: 10
+        set:
+            as_path:
+                prepend:
+                    as_number:
+                    - '200'
+                    - '200'
+                    - '200'
+            community:
+                number: 701:90
+    route_map: AJ
 service:
     call_home: true
     counters: 0
@@ -98,7 +164,10 @@ service:
             msec: true
         msg: log
         timestamp: datetime
-snmp_server: {}
+snmp_server:
+    communities:
+    -   name: public
+        ro: true
 static_routes:
 -   address_families:
     -   afi: ipv4
@@ -107,6 +176,15 @@ static_routes:
             next_hops:
             -   forward_router_address: 10.10.20.254
                 interface: GigabitEthernet1
+        -   dest: 22.22.22.22/32
+            next_hops:
+            -   forward_router_address: 10.10.20.254
+                interface: GigabitEthernet1
+    -   afi: ipv6
+        routes:
+        -   dest: ::/0
+            next_hops:
+            -   forward_router_address: 2001::1
 vlans:
 -   mtu: 1500
     name: default

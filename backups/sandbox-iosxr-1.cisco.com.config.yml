@@ -1,369 +1,280 @@
 acl_interfaces:
+-   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
+-   name: Loopback0
 -   name: Loopback100
--   name: Loopback1234
--   name: Loopback50
--   name: Loopback555
+-   name: Loopback101
+-   name: Loopback102
+-   name: Loopback119
+-   name: Loopback12
+-   name: Loopback122
+-   name: Loopback123
+-   name: Loopback124
+-   name: Loopback200
+-   name: Loopback220
+-   name: Loopback222
+-   name: Loopback300
+-   name: Loopback333
+-   name: Loopback8991
+-   name: Loopback8997
+-   name: Loopback8999
+-   name: Loopback90
 -   name: MgmtEth0/RP0/CPU0/0
+-   name: TenGigE0/0/0/9.86
 acls:
 -   acls:
     -   aces:
         -   destination:
                 any: true
             grant: permit
-            protocol: icmp
+            protocol: ipv4
+            sequence: 10
+            source:
+                host: 192.168.1.10
+        -   destination:
+                any: true
+            grant: permit
+            protocol: ipv4
+            sequence: 20
+            source:
+                host: 192.168.1.20
+        name: '10'
+    -   aces:
+        -   destination:
+                address: 198.51.100.0
+                wildcard_bits: 0.0.0.255
+            grant: deny
+            protocol: tcp
             sequence: 10
             source:
                 any: true
         -   destination:
                 any: true
-                port_protocol:
-                    eq: domain
             grant: permit
             protocol: tcp
             sequence: 20
             source:
                 any: true
+        name: IPv4-ACL
+    -   aces:
         -   destination:
-                any: true
-                port_protocol:
-                    eq: www
+                host: 82.199.220.248
             grant: permit
-            protocol: tcp
+            protocol: ipv4
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                host: 82.199.220.249
+            grant: permit
+            protocol: ipv4
+            sequence: 20
+            source:
+                any: true
+        -   destination:
+                host: 82.199.220.250
+            grant: permit
+            protocol: ipv4
             sequence: 30
             source:
                 any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 40
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 50
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 60
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 70
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 80
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 90
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 100
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 110
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 120
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 130
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 140
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 150
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 160
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 170
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 180
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 190
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 200
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 210
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 220
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 230
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 240
-            source:
-                any: true
-        -   destination:
-                any: true
-            grant: permit
-            protocol: icmp
-            sequence: 250
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: domain
-            grant: permit
-            protocol: tcp
-            sequence: 260
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: www
-            grant: permit
-            protocol: tcp
-            sequence: 270
-            source:
-                any: true
-        -   destination:
-                any: true
-                port_protocol:
-                    eq: https
-            grant: permit
-            protocol: tcp
-            sequence: 280
-            source:
-                any: true
-        name: '100'
+        name: MOS_GI_DNS_IP_Destenation
     -   aces:
         -   destination:
                 any: true
             grant: permit
-            protocol: icmp
-            protocol_options:
-                icmp:
-                    echo_reply: true
+            protocol: ipv4
             sequence: 10
             source:
-                address: 10.10.2.0
-                wildcard_bits: 0.0.0.255
+                host: 89.46.202.212
         -   destination:
                 any: true
             grant: permit
-            protocol: icmp
-            protocol_options:
-                icmp:
-                    echo_reply: true
+            protocol: ipv4
             sequence: 20
             source:
-                address: 10.10.2.0
-                wildcard_bits: 0.0.0.255
+                host: 89.46.202.213
         -   destination:
                 any: true
             grant: permit
-            protocol: icmp
-            protocol_options:
-                icmp:
-                    echo_reply: true
+            protocol: ipv4
             sequence: 30
             source:
-                address: 10.10.2.0
-                wildcard_bits: 0.0.0.255
-        name: TEST_123
-    -   aces:
-        -   destination:
-                address: 172.31.255.0
-                wildcard_bits: 0.0.0.15
-            grant: permit
-            protocol: ipv4
-            sequence: 10
-            source:
-                any: true
-        -   destination:
-                address: 172.31.255.16
-                wildcard_bits: 0.0.0.15
-            grant: permit
-            protocol: ipv4
-            sequence: 20
-            source:
-                any: true
-        -   destination:
-                address: 22.10.10.8
-                wildcard_bits: 0.0.0.22
-            grant: permit
-            protocol: ipv4
-            sequence: 40
-            source:
-                any: true
-        -   destination:
-                address: 22.10.10.2
-                wildcard_bits: 0.0.0.24
-            grant: permit
-            protocol: ipv4
-            sequence: 55
-            source:
-                any: true
-        -   destination:
-                address: 122.184.67.64
-                wildcard_bits: 0.0.0.31
-            grant: permit
-            protocol: ipv4
-            sequence: 65
-            source:
-                any: true
-        name: WI-MAX-MANAGEMENT-BACKHAUL
+                host: 89.46.202.214
+        name: NAJ_GI_DNS_IP
     afi: ipv4
 bgp_address_family:
     address_family:
     -   afi: ipv4
         networks:
-        -   network: 1.1.1.100/32
+        -   network: 5.0.0.0/24
+        -   network: 6.0.0.0/16
+        -   network: 7.0.0.0/8
+        redistribute:
+        -   protocol: connected
+            route_policy: LOCAL-TO-BGP-EXPORT
         safi: unicast
-    as_number: '65000'
+    -   afi: vpnv4
+        safi: unicast
+    -   afi: vpnv6
+        safi: unicast
+    -   afi: ipv4
+        label_mode:
+            per_vrf: true
+        redistribute:
+        -   protocol: connected
+        safi: unicast
+        vrf: vrf
+    -   afi: ipv4
+        label_mode:
+            per_vrf: true
+        redistribute:
+        -   protocol: connected
+        safi: unicast
+        vrf: test
+    -   afi: ipv6
+        label_mode:
+            per_vrf: true
+        safi: unicast
+        vrf: test
+    -   afi: ipv4
+        redistribute:
+        -   protocol: connected
+        safi: unicast
+        vrf: Test100
+    -   afi: ipv4
+        redistribute:
+        -   protocol: connected
+        safi: unicast
+        vrf: Test101
+    -   afi: ipv4
+        redistribute:
+        -   protocol: connected
+        safi: unicast
+        vrf: Test102
+    -   afi: ipv4
+        label_mode:
+            per_vrf: true
+        safi: unicast
+        vrf: INET-PRUEBA
+    -   afi: ipv6
+        label_mode:
+            per_vrf: true
+        safi: unicast
+        vrf: INET-PRUEBA
+    as_number: '100'
 bgp_global:
-    as_number: '65000'
+    as_number: '100'
+    bgp:
+        bestpath:
+            med:
+                always: true
+        log:
+            neighbor:
+                changes:
+                    detail: true
     neighbors:
-    -   neighbor_address: 192.168.1.5
-        remote_as: 65000
+    -   neighbor_address: 10.10.10.10
+        remote_as: 200
+    -   neighbor_address: 124.254.67.111
+        remote_as: 500
+    -   neighbor_address: 33.33.33.33
+        remote_as: 400
+    timers:
+        holdtime: 21
+        keepalive_time: 7
+    vrfs:
+    -   vrf: INET-PRUEBA
+    -   vrf: Test100
+    -   vrf: Test101
+    -   vrf: Test102
+    -   vrf: test
+    -   vrf: vrf
 bgp_neighbor_address_family:
-    as_number: '65000'
+    as_number: '100'
     neighbors:
     -   address_family:
         -   afi: ipv4
+            route_policy:
+                inbound: BGP-IMPORT-IN
+                outbound: BGP-EXPORT-OUT
             safi: unicast
-        neighbor_address: 192.168.1.5
-hostname: {}
+            send_community_ebgp:
+                set: true
+            send_extended_community_ebgp:
+                set: true
+        neighbor_address: 10.10.10.10
+    -   address_family:
+        -   afi: ipv4
+            route_policy:
+                inbound: BGP-IMPORT-IN
+                outbound: BGP-EXPORT-OUT
+            safi: unicast
+            send_community_ebgp:
+                set: true
+            send_extended_community_ebgp:
+                set: true
+        neighbor_address: 33.33.33.33
+hostname:
+    hostname: XR02
 interfaces:
--   enabled: true
-    name: Loopback50
+-   description: Configured via NETCONF -XR1
+    enabled: true
+    name: Loopback0
+-   description: Configured via NETCONF -XR2
+    enabled: true
+    name: Loopback12
+-   description: interface configurada con netmiko
+    enabled: true
+    name: Loopback90
 -   description: '***TEST LOOPBACK****'
     enabled: true
     name: Loopback100
--   description: PRUEBA_KV
+-   description: xr01
     enabled: true
-    name: Loopback555
--   description: '***TEST LOOPBACK****'
+    name: Loopback101
+-   description: xr02
     enabled: true
-    name: Loopback1234
+    name: Loopback102
+-   enabled: true
+    name: Loopback119
+-   enabled: true
+    name: Loopback122
+-   enabled: true
+    name: Loopback123
+-   enabled: true
+    name: Loopback124
+-   enabled: true
+    name: Loopback200
+-   enabled: true
+    name: Loopback220
+-   description: XR02
+    enabled: true
+    name: Loopback222
+-   enabled: true
+    name: Loopback300
+-   enabled: true
+    name: Loopback333
+-   description: '*** NetConf ***'
+    enabled: true
+    name: Loopback8991
+-   description: '*** NetConf ***'
+    enabled: true
+    name: Loopback8997
+-   description: '*** NetConf ***'
+    enabled: true
+    name: Loopback8999
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
--   description: test
+-   description: CustA -XR
+    enabled: true
+    name: GigabitEthernet0/0/0/0
+-   description: WAN Interface
     enabled: true
     name: GigabitEthernet0/0/0/1
 -   description: test
@@ -372,46 +283,177 @@ interfaces:
 -   description: test
     enabled: true
     name: GigabitEthernet0/0/0/3
+-   description: cofigurda usando paramiko @ElDimas
+    enabled: true
+    name: GigabitEthernet0/0/0/4
 -   enabled: false
     name: GigabitEthernet0/0/0/5
 -   enabled: false
     name: GigabitEthernet0/0/0/6
+-   enabled: true
+    name: TenGigE0/0/0/9.86
 l2_interfaces:
--   name: Loopback50
+-   name: Loopback0
+-   name: Loopback12
+-   name: Loopback90
 -   name: Loopback100
--   name: Loopback555
--   name: Loopback1234
+-   name: Loopback101
+-   name: Loopback102
+-   name: Loopback119
+-   name: Loopback122
+-   name: Loopback123
+-   name: Loopback124
+-   name: Loopback200
+-   name: Loopback220
+-   name: Loopback222
+-   name: Loopback300
+-   name: Loopback333
+-   name: Loopback8991
+-   name: Loopback8997
+-   name: Loopback8999
 -   name: MgmtEth0/RP0/CPU0/0
+-   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
+-   name: TenGigE0/0/0/9.86
+l3_interfaces:
+-   ipv4:
+    -   address: 12.12.12.12/32
+    name: Loopback0
+-   ipv4:
+    -   address: 12.12.12.12/32
+    name: Loopback12
+-   ipv4:
+    -   address: 90.90.90.90/32
+    name: Loopback90
+-   ipv4:
+    -   address: 192.168.100.100/24
+    -   address: 1.1.1.100/32
+        secondary: true
+    name: Loopback100
+-   ipv4:
+    -   address: 101.69.99.99/24
+    name: Loopback101
+-   ipv4:
+    -   address: 102.102.99.99/24
+    name: Loopback102
+-   ipv4:
+    -   address: 10.18.8.25/32
+    name: Loopback119
+-   ipv4:
+    -   address: 10.1.1.12/32
+    name: Loopback122
+-   ipv4:
+    -   address: 10.18.8.1/32
+    name: Loopback123
+-   ipv4:
+    -   address: 100.10.10.1/32
+    name: Loopback124
+-   ipv4:
+    -   address: 192.168.222.1/32
+    name: Loopback200
+-   name: Loopback220
+-   ipv4:
+    -   address: 222.69.99.99/24
+    name: Loopback222
+-   ipv4:
+    -   address: 192.168.50.1/24
+    name: Loopback300
+-   ipv4:
+    -   address: 10.20.30.1/32
+    name: Loopback333
+-   name: Loopback8991
+-   name: Loopback8997
+-   name: Loopback8999
+-   ipv4:
+    -   address: 10.10.20.175/24
+    name: MgmtEth0/RP0/CPU0/0
+-   ipv4:
+    -   address: 10.10.1.1/24
+    name: GigabitEthernet0/0/0/0
+-   ipv4:
+    -   address: 192.168.100.1/24
+    name: GigabitEthernet0/0/0/1
+-   ipv4:
+    -   address: 172.200.200.40/24
+    name: GigabitEthernet0/0/0/2
+-   ipv4:
+    -   address: 7.6.5.4/24
+    -   address: 7.7.8.7/24
+        secondary: true
+    name: GigabitEthernet0/0/0/3
+-   ipv4:
+    -   address: 172.200.200.1/24
+    name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
+-   name: TenGigE0/0/0/9.86
 lacp: {}
 lacp_interfaces:
+-   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
+-   name: TenGigE0/0/0/9.86
 lag_interfaces: []
 lldp_global: {}
 lldp_interfaces:
+-   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
 -   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
-logging_global: {}
-ntp_global: {}
-ospf_interfaces: []
-ospfv2:
-    processes:
-    -   process_id: '1'
-ospfv3:
-    processes:
-    -   process_id: '1'
-prefix_lists: []
+-   name: TenGigE0/0/0/9.86
+logging_global:
+    facility: syslog
+    hostnameprefix: test.firma.cz
+    trap:
+        severity: informational
+ntp_global:
+    servers:
+    -   prefer: true
+        server: 132.163.97.5
+ospfv3: {}
+prefix_lists:
+-   afi: ipv4
+    prefix_lists:
+    -   entries:
+        -   action: permit
+            eq: 32
+            prefix: 10.100.0.0/16
+            sequence: 10
+        name: pfx_1
+    -   entries:
+        -   action: permit
+            prefix: 77.77.77.0/24
+            sequence: 20
+        -   action: permit
+            prefix: 88.88.88.0/24
+            sequence: 30
+        -   action: deny
+            prefix: 99.99.99.0/24
+            sequence: 40
+        name: LOCAL-PREFIX
+    -   entries:
+        -   action: permit
+            prefix: 11.11.11.0/24
+            sequence: 20
+        -   action: permit
+            prefix: 22.22.22.0/24
+            sequence: 30
+        -   action: deny
+            prefix: 33.33.33.0/24
+            sequence: 40
+        name: BGP-EXPORT-OUT
 snmp_server:
     communities:
     -   name: public
@@ -464,37 +506,6 @@ snmp_server:
             vc_down: true
             vc_up: true
         msdp_peer_state_change: true
-        ospf:
-            errors:
-                authentication_failure: true
-                bad_packet: true
-                config_error: true
-                virt_authentication_failure: true
-                virt_bad_packet: true
-                virt_config_error: true
-            lsa:
-                lsa_maxage: true
-                lsa_originate: true
-            retransmit:
-                packets: true
-                virt_packets: true
-            state_change:
-                if_state_change: true
-                neighbor_state_change: true
-                virtif_state_change: true
-                virtneighbor_state_change: true
-        ospfv3:
-            errors:
-                bad_packet: true
-                config_error: true
-                virt_bad_packet: true
-            state_change:
-                if_state_change: true
-                neighbor_state_change: true
-                restart_status_change: true
-                restart_virtual_helper_status_change: true
-                virtif_state_change: true
-                virtneighbor_state_change: true
         pim:
             interface_state_change: true
             invalid_message_received: true
@@ -534,4 +545,7 @@ static_routes:
             -   forward_router_address: 10.10.20.254
             -   forward_router_address: 10.10.20.254
                 interface: MgmtEth0
+        -   dest: 32.32.32.0/24
+            next_hops:
+            -   forward_router_address: 10.10.20.175
         safi: unicast
