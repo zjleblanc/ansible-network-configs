@@ -1,7 +1,7 @@
 acl_interfaces:
 -   name: Vlan1
--   name: Vlan100
--   name: Vlan2500
+-   name: Vlan111
+-   name: port-channel1
 -   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
@@ -67,14 +67,37 @@ acl_interfaces:
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: mgmt0
--   name: loopback1
--   name: loopback2
--   name: loopback3
 -   name: loopback5
--   name: loopback99
--   name: loopback555
+-   name: loopback30
 acls:
 -   acls:
+    -   aces:
+        -   destination:
+                address: 10.92.22.33
+                wildcard_bits: 8.8.8.8
+            grant: deny
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        name: '1'
+    -   aces:
+        -   destination:
+                address: 198.51.100.0
+                wildcard_bits: 0.0.0.255
+            grant: deny
+            protocol: tcp
+            sequence: 10
+            source:
+                any: true
+        -   destination:
+                any: true
+            grant: permit
+            protocol: tcp
+            sequence: 20
+            source:
+                any: true
+        name: IPv4-ACL
     -   aces:
         -   destination:
                 any: true
@@ -82,63 +105,278 @@ acls:
             protocol: ip
             sequence: 10
             source:
-                host: 172.30.13.23
+                prefix: 192.168.0.101/24
         -   destination:
                 any: true
             grant: permit
             protocol: ip
             sequence: 20
             source:
-                address: 172.30.191.0
-                wildcard_bits: 0.0.0.255
+                prefix: 192.168.0.101/26
         -   destination:
                 any: true
             grant: permit
             protocol: ip
             sequence: 30
             source:
-                host: 172.30.56.146
+                host: 192.168.0.101
         -   destination:
                 any: true
             grant: permit
             protocol: ip
             sequence: 40
             source:
-                host: 172.30.56.149
-        name: SNMP
-    -   aces:
-        -   destination:
-                host: 172.18.2.55
-            grant: permit
-            protocol: tcp
-            sequence: 10
-            source:
-                any: true
+                host: 192.168.0.101
         -   destination:
                 any: true
-                port_protocol:
-                    eq: '443'
             grant: permit
-            protocol: tcp
-            sequence: 20
+            protocol: ip
+            sequence: 50
             source:
+                host: 192.168.0.101
+        -   destination:
                 any: true
-        name: test1
+            grant: permit
+            protocol: ip
+            sequence: 60
+            source:
+                host: 192.168.0.101
+        name: gnoc_ro
     afi: ipv4
-bfd_interfaces: []
-bgp_address_family: {}
-bgp_global: {}
-hostname:
-    hostname: nxos
+bfd_interfaces:
+-   bfd: enable
+    echo: enable
+    name: Vlan1
+-   bfd: enable
+    echo: enable
+    name: Vlan111
+-   bfd: enable
+    echo: enable
+    name: port-channel1
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/1
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/2
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/3
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/4
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/5
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/6
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/7
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/8
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/9
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/10
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/11
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/12
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/13
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/14
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/15
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/16
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/17
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/18
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/19
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/20
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/21
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/22
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/23
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/24
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/25
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/26
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/27
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/28
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/29
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/30
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/31
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/32
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/33
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/34
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/35
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/36
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/37
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/38
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/39
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/40
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/41
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/42
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/43
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/44
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/45
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/46
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/47
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/48
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/49
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/50
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/51
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/52
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/53
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/54
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/55
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/56
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/57
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/58
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/59
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/60
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/61
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/62
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/63
+-   bfd: enable
+    echo: enable
+    name: Ethernet1/64
+-   bfd: enable
+    echo: enable
+    name: mgmt0
+-   bfd: enable
+    echo: enable
+    name: loopback5
+-   bfd: enable
+    echo: enable
+    name: loopback30
+bgp_address_family:
+    address_family:
+    -   afi: ipv4
+        networks:
+        -   prefix: 172.16.0.0/16
+        safi: unicast
+    as_number: '65535'
+bgp_global:
+    as_number: '65535'
+    neighbors:
+    -   neighbor_address: 172.16.0.2
+        remote_as: '65535'
+    router_id: 172.16.0.1
+    timers:
+        prefix_peer_timeout: 30
+hostname: {}
 hsrp_interfaces: []
 interfaces:
 -   name: Vlan1
 -   enabled: true
-    name: Vlan100
--   enabled: true
-    name: Vlan2500
--   description: test
-    name: Ethernet1/1
+    name: Vlan111
+-   name: port-channel1
+-   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -148,123 +386,15 @@ interfaces:
 -   name: Ethernet1/8
 -   name: Ethernet1/9
 -   name: Ethernet1/10
--   name: Ethernet1/11
+-   description: Configured with NX-API REST
+    name: Ethernet1/11
 -   name: Ethernet1/12
--   name: Ethernet1/13
--   description: The Cisco Switch Updated Config July
-    name: Ethernet1/14
--   description: My Description-1
-    name: Ethernet1/15
--   description: My Description
-    name: Ethernet1/16
--   description: My Description-3
-    name: Ethernet1/17
--   name: Ethernet1/18
--   name: Ethernet1/19
--   name: Ethernet1/20
--   name: Ethernet1/21
--   name: Ethernet1/22
--   name: Ethernet1/23
--   name: Ethernet1/24
--   name: Ethernet1/25
--   name: Ethernet1/26
--   name: Ethernet1/27
--   name: Ethernet1/28
--   name: Ethernet1/29
--   name: Ethernet1/30
--   name: Ethernet1/31
--   name: Ethernet1/32
--   name: Ethernet1/33
--   name: Ethernet1/34
--   name: Ethernet1/35
--   name: Ethernet1/36
--   name: Ethernet1/37
--   name: Ethernet1/38
--   name: Ethernet1/39
--   name: Ethernet1/40
--   name: Ethernet1/41
--   name: Ethernet1/42
--   name: Ethernet1/43
--   name: Ethernet1/44
--   name: Ethernet1/45
--   name: Ethernet1/46
--   name: Ethernet1/47
--   name: Ethernet1/48
--   name: Ethernet1/49
--   name: Ethernet1/50
--   name: Ethernet1/51
--   name: Ethernet1/52
--   name: Ethernet1/53
--   name: Ethernet1/54
--   name: Ethernet1/55
--   name: Ethernet1/56
--   name: Ethernet1/57
--   name: Ethernet1/58
--   name: Ethernet1/59
 -   mode: layer3
-    name: Ethernet1/60
--   name: Ethernet1/61
--   name: Ethernet1/62
--   name: Ethernet1/63
--   name: Ethernet1/64
--   name: mgmt0
--   description: lp0-mz
-    name: loopback1
--   name: loopback2
--   name: loopback3
--   name: loopback5
--   description: Full intf config via NETCONF
-    name: loopback99
--   name: loopback555
-l2_interfaces:
--   name: Vlan1
--   name: Vlan100
--   name: Vlan2500
--   access:
-        vlan: 100
-    name: Ethernet1/1
-    trunk:
-        allowed_vlans: 1-10,12-138,140-4094
--   access:
-        vlan: 200
-    name: Ethernet1/2
-    trunk:
-        allowed_vlans: 1-10,12-138,140-4094
--   access:
-        vlan: 100
-    name: Ethernet1/3
-    trunk:
-        allowed_vlans: 1-10,12-138,140-4094
--   access:
-        vlan: 1234
-    mode: trunk
-    name: Ethernet1/4
-    trunk:
-        allowed_vlans: '2500'
--   access:
-        vlan: 100
-    name: Ethernet1/5
--   name: Ethernet1/6
--   name: Ethernet1/7
--   name: Ethernet1/8
--   name: Ethernet1/9
--   name: Ethernet1/10
--   name: Ethernet1/11
--   name: Ethernet1/12
--   name: Ethernet1/13
+    name: Ethernet1/13
 -   name: Ethernet1/14
--   mode: trunk
-    name: Ethernet1/15
-    trunk:
-        allowed_vlans: 500-501,503-505
--   mode: trunk
-    name: Ethernet1/16
-    trunk:
-        allowed_vlans: 500-501,503-505
--   mode: trunk
-    name: Ethernet1/17
-    trunk:
-        allowed_vlans: 500-501,503-505
+-   name: Ethernet1/15
+-   name: Ethernet1/16
+-   name: Ethernet1/17
 -   name: Ethernet1/18
 -   name: Ethernet1/19
 -   name: Ethernet1/20
@@ -313,24 +443,13 @@ l2_interfaces:
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: mgmt0
--   name: loopback1
--   name: loopback2
--   name: loopback3
 -   name: loopback5
--   name: loopback99
--   name: loopback555
-l3_interfaces:
+-   description: My Learning Lab Loopback
+    name: loopback30
+l2_interfaces:
 -   name: Vlan1
--   ipv4:
-    -   address: 10.100.200.1/24
-    ipv6_redirects: false
-    name: Vlan100
-    redirects: false
--   ipv4:
-    -   address: 172.16.232.1/29
-    ipv6_redirects: false
-    name: Vlan2500
-    redirects: false
+-   name: Vlan111
+-   name: port-channel1
 -   name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
@@ -390,9 +509,82 @@ l3_interfaces:
 -   name: Ethernet1/57
 -   name: Ethernet1/58
 -   name: Ethernet1/59
--   ipv6_redirects: false
-    name: Ethernet1/60
-    redirects: false
+-   name: Ethernet1/60
+-   name: Ethernet1/61
+-   name: Ethernet1/62
+-   name: Ethernet1/63
+-   name: Ethernet1/64
+-   name: mgmt0
+-   name: loopback5
+-   name: loopback30
+l3_interfaces:
+-   name: Vlan1
+-   ipv4:
+    -   address: 192.168.1.1/24
+    name: Vlan111
+-   name: port-channel1
+-   name: Ethernet1/1
+-   name: Ethernet1/2
+-   name: Ethernet1/3
+-   name: Ethernet1/4
+-   name: Ethernet1/5
+-   name: Ethernet1/6
+-   name: Ethernet1/7
+-   name: Ethernet1/8
+-   name: Ethernet1/9
+-   name: Ethernet1/10
+-   name: Ethernet1/11
+-   name: Ethernet1/12
+-   ipv4:
+    -   address: 100.64.255.1/30
+    name: Ethernet1/13
+-   name: Ethernet1/14
+-   name: Ethernet1/15
+-   name: Ethernet1/16
+-   name: Ethernet1/17
+-   name: Ethernet1/18
+-   name: Ethernet1/19
+-   name: Ethernet1/20
+-   name: Ethernet1/21
+-   name: Ethernet1/22
+-   name: Ethernet1/23
+-   name: Ethernet1/24
+-   name: Ethernet1/25
+-   name: Ethernet1/26
+-   name: Ethernet1/27
+-   name: Ethernet1/28
+-   name: Ethernet1/29
+-   name: Ethernet1/30
+-   name: Ethernet1/31
+-   name: Ethernet1/32
+-   name: Ethernet1/33
+-   name: Ethernet1/34
+-   name: Ethernet1/35
+-   name: Ethernet1/36
+-   name: Ethernet1/37
+-   name: Ethernet1/38
+-   name: Ethernet1/39
+-   name: Ethernet1/40
+-   name: Ethernet1/41
+-   name: Ethernet1/42
+-   name: Ethernet1/43
+-   name: Ethernet1/44
+-   name: Ethernet1/45
+-   name: Ethernet1/46
+-   name: Ethernet1/47
+-   name: Ethernet1/48
+-   name: Ethernet1/49
+-   name: Ethernet1/50
+-   name: Ethernet1/51
+-   name: Ethernet1/52
+-   name: Ethernet1/53
+-   name: Ethernet1/54
+-   name: Ethernet1/55
+-   name: Ethernet1/56
+-   name: Ethernet1/57
+-   name: Ethernet1/58
+-   name: Ethernet1/59
+-   name: Ethernet1/60
 -   name: Ethernet1/61
 -   name: Ethernet1/62
 -   name: Ethernet1/63
@@ -400,23 +592,12 @@ l3_interfaces:
 -   ipv4:
     -   address: 10.10.20.95/24
     name: mgmt0
--   ipv4:
-    -   address: 10.10.10.22/32
-    name: loopback1
--   ipv4:
-    -   address: 2.2.2.2/32
-    name: loopback2
--   ipv4:
-    -   address: 3.3.3.3/32
-    name: loopback3
 -   name: loopback5
--   ipv4:
-    -   address: 10.99.99.1/24
-    name: loopback99
--   name: loopback555
+-   name: loopback30
 lacp: {}
 lacp_interfaces: []
-lag_interfaces: []
+lag_interfaces:
+-   name: port-channel1
 lldp_global: {}
 lldp_interfaces:
 -   name: Ethernet1/1
@@ -487,7 +668,13 @@ lldp_interfaces:
 logging_global:
     console:
         state: disabled
-ntp_global: {}
+    history:
+        size: 200
+    hosts:
+    -   host: 192.168.0.101
+        severity: informational
+ntp_global:
+    source_interface: mgmt0
 ospf_interfaces:
 -   name: Ethernet1/1
 -   name: Ethernet1/2
@@ -501,7 +688,16 @@ ospf_interfaces:
 -   name: Ethernet1/10
 -   name: Ethernet1/11
 -   name: Ethernet1/12
--   name: Ethernet1/13
+-   address_family:
+    -   afi: ipv4
+        dead_interval: 3
+        hello_interval: 1
+        network: point-to-point
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: AFH
+    name: Ethernet1/13
 -   name: Ethernet1/14
 -   name: Ethernet1/15
 -   name: Ethernet1/16
@@ -548,56 +744,59 @@ ospf_interfaces:
 -   name: Ethernet1/57
 -   name: Ethernet1/58
 -   name: Ethernet1/59
--   address_family:
-    -   afi: ipv4
-        authentication:
-            message_digest: true
-        passive_interface: true
-    name: Ethernet1/60
+-   name: Ethernet1/60
 -   name: Ethernet1/61
 -   name: Ethernet1/62
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: Vlan1
--   name: Vlan100
--   name: Vlan2500
--   name: loopback1
--   name: loopback2
--   name: loopback3
+-   name: Vlan111
+-   name: loopback30
 -   name: loopback5
--   name: loopback555
--   name: loopback99
 -   name: mgmt0
+-   name: port-channel1
 ospfv2:
     processes:
-    -   process_id: '5'
+    -   bfd: true
+        process_id: AFH
+        router_id: 1.1.1.1
+        vrfs:
+        -   vrf: AFH
 ospfv3: {}
 prefix_lists: []
 route_maps: []
 snmp_server:
     communities:
     -   group: network-operator
-        name: public
+        name: NXAPI2
     -   group: network-operator
-        name: testcommunity
-    users:
-        auth:
-        -   authentication:
-                algorithm: md5
-                localizedv2_key: true
-                password: 52036704DA8793EDC8726140EB5216EDEA84
-                priv:
-                    aes_128: true
-                    privacy_password: 37462F1D8084C3B9C47C4E72B94807AEF7D2
-            group: network-admin
-            user: admin
+        name: zxcvbnmasdfghjkl
+    hosts:
+    -   community: exit
+        host: 192.168.0.101
+        traps: true
+        version: 2c
+    -   community: NXAPI2
+        host: 192.168.0.102
+        traps: true
+        version: 2c
+    traps:
+        bridge:
+            newroot: true
+            topologychange: true
+        config:
+            ccmCLIRunningConfigChanged: true
+        feature_control:
+            ciscoFeatOpStatusChange: true
+        link:
+            cisco_xcvr_mon_status_chg: true
+        stpx:
+            inconsistency: true
+            loop_inconsistency: true
+            root_inconsistency: true
+        sysmgr:
+            cseFailSwCoreNotifyExtended: true
 static_routes:
--   address_families:
-    -   afi: ipv4
-        routes:
-        -   dest: 0.0.0.0/0
-            next_hops:
-            -   forward_router_address: 192.168.1.254
 -   address_families:
     -   afi: ipv4
         routes:
@@ -605,7 +804,31 @@ static_routes:
             next_hops:
             -   forward_router_address: 10.10.20.254
     vrf: management
-telemetry: {}
+telemetry:
+    destination_groups:
+    -   destination:
+            encoding: gpb
+            ip: 10.10.10.10
+            port: '57000'
+            protocol: grpc
+        id: '10'
+    sensor_groups:
+    -   data_source: YANG
+        id: '10'
+    -   id: '10'
+        path:
+            depth: None
+            filter_condition: None
+            name: Cisco-NX-OS-device:System/intf-items/phys-items/PhysIf-list/dbgIfIn-items
+            query_condition: None
+    -   data_source: YANG
+        id: test
+    -   id: test
+    subscriptions:
+    -   destination_group: '10'
+        id: '10'
+    -   id: '10'
+    vrf: default
 vlans:
 -   enabled: true
     mode: ce
@@ -613,8 +836,35 @@ vlans:
     state: active
     vlan_id: 1
 -   enabled: true
-    mapped_vni: 1010201
     mode: ce
-    name: vlan-201
+    name: TestVLAN
     state: active
-    vlan_id: 201
+    vlan_id: 20
+-   enabled: true
+    mode: ce
+    name: MyVLAN
+    state: active
+    vlan_id: 100
+-   enabled: true
+    mode: ce
+    name: WALMAZAN_VLAN
+    state: active
+    vlan_id: 101
+-   enabled: true
+    mode: ce
+    state: active
+    vlan_id: 102
+-   enabled: true
+    mode: ce
+    name: prat-vlan
+    state: active
+    vlan_id: 105
+-   enabled: true
+    mode: ce
+    state: active
+    vlan_id: 159
+-   enabled: true
+    mode: ce
+    name: NX-API-REST1
+    state: active
+    vlan_id: 505
