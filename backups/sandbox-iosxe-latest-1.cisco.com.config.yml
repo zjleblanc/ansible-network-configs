@@ -42,23 +42,11 @@ interfaces:
     name: Loopback0
 -   enabled: true
     name: Loopback10
--   description: Configured by RESTCONF
-    enabled: true
-    name: Loopback100
--   description: Configured by RESTCONF CCNA
-    enabled: true
-    name: Loopback101
--   description: THIS IS A TEST
-    enabled: true
-    name: Loopback56
 -   enabled: true
     name: VirtualPortGroup0
 l2_interfaces:
 -   name: Loopback0
 -   name: Loopback10
--   name: Loopback56
--   name: Loopback100
--   name: Loopback101
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
@@ -74,15 +62,6 @@ l3_interfaces:
     name: Loopback0
 -   name: Loopback10
 -   ipv4:
-    -   address: 172.16.100.1/24
-    name: Loopback100
--   ipv4:
-    -   address: 172.16.101.1/24
-    name: Loopback101
--   ipv4:
-    -   address: 56.56.56.1/24
-    name: Loopback56
--   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
 lacp:
@@ -91,9 +70,6 @@ lacp:
 lacp_interfaces:
 -   name: loopback0
 -   name: loopback10
--   name: loopback56
--   name: loopback100
--   name: loopback101
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
