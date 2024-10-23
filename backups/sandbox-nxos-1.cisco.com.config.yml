@@ -1,5 +1,7 @@
 acl_interfaces:
 -   name: Vlan1
+-   name: Vlan100
+-   name: Vlan101
 -   name: Vlan111
 -   name: port-channel1
 -   name: Ethernet1/1
@@ -69,6 +71,8 @@ acl_interfaces:
 -   name: mgmt0
 -   name: loopback5
 -   name: loopback30
+-   name: loopback31
+-   name: loopback100
 acls:
 -   acls:
     -   aces:
@@ -147,6 +151,12 @@ bfd_interfaces:
 -   bfd: enable
     echo: enable
     name: Vlan1
+-   bfd: enable
+    echo: enable
+    name: Vlan100
+-   bfd: enable
+    echo: enable
+    name: Vlan101
 -   bfd: enable
     echo: enable
     name: Vlan111
@@ -354,6 +364,12 @@ bfd_interfaces:
 -   bfd: enable
     echo: enable
     name: loopback30
+-   bfd: enable
+    echo: enable
+    name: loopback31
+-   bfd: enable
+    echo: enable
+    name: loopback100
 bgp_address_family:
     address_family:
     -   afi: ipv4
@@ -374,9 +390,14 @@ hsrp_interfaces: []
 interfaces:
 -   name: Vlan1
 -   enabled: true
+    name: Vlan100
+-   enabled: true
+    name: Vlan101
+-   enabled: true
     name: Vlan111
 -   name: port-channel1
--   name: Ethernet1/1
+-   mode: layer3
+    name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -446,8 +467,14 @@ interfaces:
 -   name: loopback5
 -   description: My Learning Lab Loopback
     name: loopback30
+-   description: My Learning Lab Loopback
+    name: loopback31
+-   description: TESTTESTTEST100
+    name: loopback100
 l2_interfaces:
 -   name: Vlan1
+-   name: Vlan100
+-   name: Vlan101
 -   name: Vlan111
 -   name: port-channel1
 -   name: Ethernet1/1
@@ -517,13 +544,23 @@ l2_interfaces:
 -   name: mgmt0
 -   name: loopback5
 -   name: loopback30
+-   name: loopback31
+-   name: loopback100
 l3_interfaces:
 -   name: Vlan1
+-   ipv4:
+    -   address: 172.16.1.100/24
+    name: Vlan100
+-   ipv4:
+    -   address: 172.16.2.100/24
+    name: Vlan101
 -   ipv4:
     -   address: 192.168.1.1/24
     name: Vlan111
 -   name: port-channel1
--   name: Ethernet1/1
+-   ipv4:
+    -   address: 172.16.3.100/24
+    name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -594,6 +631,8 @@ l3_interfaces:
     name: mgmt0
 -   name: loopback5
 -   name: loopback30
+-   name: loopback31
+-   name: loopback100
 lacp: {}
 lacp_interfaces: []
 lag_interfaces:
@@ -676,7 +715,13 @@ logging_global:
 ntp_global:
     source_interface: mgmt0
 ospf_interfaces:
--   name: Ethernet1/1
+-   address_family:
+    -   afi: ipv4
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: '1'
+    name: Ethernet1/1
 -   name: Ethernet1/2
 -   name: Ethernet1/3
 -   name: Ethernet1/4
@@ -750,13 +795,30 @@ ospf_interfaces:
 -   name: Ethernet1/63
 -   name: Ethernet1/64
 -   name: Vlan1
+-   address_family:
+    -   afi: ipv4
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: '1'
+    name: Vlan100
+-   address_family:
+    -   afi: ipv4
+        processes:
+        -   area:
+                area_id: 0.0.0.0
+            process_id: '1'
+    name: Vlan101
 -   name: Vlan111
+-   name: loopback100
 -   name: loopback30
+-   name: loopback31
 -   name: loopback5
 -   name: mgmt0
 -   name: port-channel1
 ospfv2:
     processes:
+    -   process_id: '1'
     -   bfd: true
         process_id: AFH
         router_id: 1.1.1.1
@@ -772,7 +834,7 @@ snmp_server:
     -   group: network-operator
         name: zxcvbnmasdfghjkl
     hosts:
-    -   community: exit
+    -   community: NXAPI2
         host: 192.168.0.101
         traps: true
         version: 2c
@@ -842,7 +904,7 @@ vlans:
     vlan_id: 20
 -   enabled: true
     mode: ce
-    name: MyVLAN
+    name: Accounting
     state: active
     vlan_id: 100
 -   enabled: true
@@ -861,8 +923,18 @@ vlans:
     vlan_id: 105
 -   enabled: true
     mode: ce
+    name: akash_test
+    state: active
+    vlan_id: 115
+-   enabled: true
+    mode: ce
     state: active
     vlan_id: 159
+-   enabled: true
+    mode: ce
+    name: IT
+    state: active
+    vlan_id: 200
 -   enabled: true
     mode: ce
     name: NX-API-REST1

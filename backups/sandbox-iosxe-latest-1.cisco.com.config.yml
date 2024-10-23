@@ -2,6 +2,13 @@ acl_interfaces: {}
 acls:
 -   acls:
     -   aces:
+        -   grant: permit
+            sequence: 10
+            source:
+                host: 1.1.1.1
+        acl_type: standard
+        name: '10'
+    -   aces:
         -   destination:
                 any: true
             grant: permit
@@ -24,6 +31,54 @@ acls:
         name: Test
     -   acl_type: extended
         name: meraki-fqdn-dns
+    -   aces:
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 10
+            source:
+                host: 1.1.1.1
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 20
+            source:
+                host: 2.2.2.2
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 30
+            source:
+                host: 3.3.3.3
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 40
+            source:
+                host: 4.4.4.4
+        -   destination:
+                any: true
+            grant: permit
+            log:
+                set: true
+            protocol: ip
+            sequence: 50
+            source:
+                host: 5.5.5.5
+        acl_type: extended
+        name: my_acl
     afi: ipv4
 bgp_global: {}
 hostname:
@@ -32,20 +87,27 @@ interfaces:
 -   description: MANAGEMENT INTERFACE - DON'T TOUCH ME
     enabled: true
     name: GigabitEthernet1
--   description: Network Interface
-    enabled: false
+-   description: ansible demo edit
+    enabled: true
     name: GigabitEthernet2
 -   description: Network Interface
     enabled: false
     name: GigabitEthernet3
--   enabled: true
+-   description: Pod Number 0
+    enabled: true
     name: Loopback0
 -   enabled: true
+    name: Loopback1
+-   enabled: true
     name: Loopback10
+-   enabled: true
+    name: Loopback3
 -   enabled: true
     name: VirtualPortGroup0
 l2_interfaces:
 -   name: Loopback0
+-   name: Loopback1
+-   name: Loopback3
 -   name: Loopback10
 -   name: VirtualPortGroup0
 -   name: GigabitEthernet1
@@ -58,9 +120,15 @@ l3_interfaces:
 -   name: GigabitEthernet2
 -   name: GigabitEthernet3
 -   ipv4:
-    -   address: 10.0.0.1/24
+    -   address: 10.111.0.1/32
     name: Loopback0
+-   ipv4:
+    -   address: 1.1.1.1/24
+    name: Loopback1
 -   name: Loopback10
+-   ipv4:
+    -   address: 1.2.3.4/32
+    name: Loopback3
 -   ipv4:
     -   address: 192.168.1.1/24
     name: VirtualPortGroup0
@@ -69,6 +137,8 @@ lacp:
         priority: 32768
 lacp_interfaces:
 -   name: loopback0
+-   name: loopback1
+-   name: loopback3
 -   name: loopback10
 -   name: GigabitEthernet1
 -   name: GigabitEthernet2
@@ -77,7 +147,13 @@ lag_interfaces: {}
 lldp_global: {}
 lldp_interfaces: []
 logging_global: {}
-ntp_global: {}
+ntp_global:
+    servers:
+    -   server: 1.2.3.4
+    -   server: 10.1.0.11
+    -   server: 10.1.0.12
+    -   server: 10.1.0.13
+    -   server: 10.1.0.14
 ospfv2: {}
 prefix_lists: {}
 route_maps: {}
@@ -98,7 +174,33 @@ service:
             msec: true
         msg: log
         timestamp: datetime
-snmp_server: {}
+snmp_server:
+    communities:
+    -   name: blablabla
+        ro: true
+    groups:
+    -   acl_v4: '55'
+        group: group1
+        read: ro-view
+        version: v3
+        version_option: auth
+        write: rw-view
+    users:
+    -   acl_v4: '55'
+        group: group1
+        username: kp
+        version: v3
+    -   acl_v4: '55'
+        group: group1
+        username: kp12345
+        version: v3
+    views:
+    -   excluded: true
+        family_name: adslMIB
+        name: ro-view
+    -   excluded: true
+        family_name: ciscoBstunMIB
+        name: ro-view
 static_routes:
 -   address_families:
     -   afi: ipv4

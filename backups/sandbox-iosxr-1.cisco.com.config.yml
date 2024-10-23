@@ -48,7 +48,8 @@ interfaces:
 -   description: SBI-ML3-3-184671-AKC-4096k-STATE-BANK-OF-INDIA-3-4651111-30102023
     enabled: true
     name: Bundle-Ether6.6477
--   enabled: true
+-   description: Loopback Interface
+    enabled: true
     name: Loopback0
 -   enabled: true
     name: Loopback1
@@ -105,7 +106,7 @@ l3_interfaces:
     -   address: 10.171.221.134/30
     name: Bundle-Ether6.6477
 -   ipv4:
-    -   address: 10.0.0.1/32
+    -   address: 192.0.2.1/32
     name: Loopback0
 -   name: Loopback1
 -   name: Loopback2
