@@ -1,6 +1,6 @@
 acl_interfaces:
--   name: Bundle-Ether6
--   name: Bundle-Ether6.6477
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.185
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -8,59 +8,43 @@ acl_interfaces:
 -   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
--   name: Loopback0
--   name: Loopback1
--   name: Loopback10
--   name: Loopback2
--   name: Loopback4
--   name: Loopback6
+-   name: Loopback100
+-   name: Loopback20
+-   name: Loopback30
+-   name: Loopback555
 -   name: MgmtEth0/RP0/CPU0/0
--   name: tunnel-ip3
 acls: []
 bgp_address_family:
-    address_family:
-    -   afi: ipv4
-        safi: unicast
-    as_number: '1234'
+    as_number: '151515'
 bgp_global:
-    as_number: '1234'
-    bgp:
-        router_id: 1.1.1.1
-    neighbors:
-    -   neighbor_address: 1.1.1.2
-        remote_as: 5555
+    as_number: '151515'
+    vrfs:
+    -   neighbors:
+        -   neighbor_address: 15.15.15.15
+        vrf: test
 bgp_neighbor_address_family:
-    as_number: '1234'
-    neighbors:
-    -   address_family:
-        -   afi: ipv4
-            route_policy:
-                inbound: allowedall
-                outbound: allowedall
-            safi: unicast
-        neighbor_address: 1.1.1.2
+    as_number: '151515'
 hostname:
-    hostname: Test123
+    hostname: my_sweet_rtr
 interfaces:
--   description: '#test#'
+-   description: trunk ficticio
     enabled: true
-    name: Bundle-Ether6
--   description: SBI-ML3-3-184671-AKC-4096k-STATE-BANK-OF-INDIA-3-4651111-30102023
+    name: Bundle-Ether1
+-   description: to-siman-l3vpn
     enabled: true
-    name: Bundle-Ether6.6477
--   description: Loopback Interface
+    name: Bundle-Ether1.185
+-   description: msdp originator-id
     enabled: true
-    name: Loopback0
--   enabled: true
-    name: Loopback1
--   enabled: true
-    name: Loopback2
--   enabled: true
-    name: Loopback4
--   enabled: true
-    name: Loopback6
--   enabled: true
-    name: Loopback10
+    name: Loopback20
+-   description: anycast-RP
+    enabled: true
+    name: Loopback30
+-   description: '***TEST LOOPBACK****'
+    enabled: true
+    name: Loopback100
+-   description: PRUEBA_KV
+    enabled: true
+    name: Loopback555
 -   enabled: true
     name: MgmtEth0/RP0/CPU0/0
 -   enabled: false
@@ -68,8 +52,8 @@ interfaces:
 -   description: test
     enabled: false
     name: GigabitEthernet0/0/0/1
--   description: '#test#'
-    enabled: true
+-   description: test
+    enabled: false
     name: GigabitEthernet0/0/0/2
 -   description: test
     enabled: false
@@ -81,17 +65,14 @@ interfaces:
 -   enabled: false
     name: GigabitEthernet0/0/0/6
 l2_interfaces:
--   name: Bundle-Ether6
+-   name: Bundle-Ether1
 -   encapsulation:
-        dot1q: 1000
-        second_dot1q: 502
-    name: Bundle-Ether6.6477
--   name: Loopback0
--   name: Loopback1
--   name: Loopback2
--   name: Loopback4
--   name: Loopback6
--   name: Loopback10
+        dot1q: 185
+    name: Bundle-Ether1.185
+-   name: Loopback20
+-   name: Loopback30
+-   name: Loopback100
+-   name: Loopback555
 -   name: MgmtEth0/RP0/CPU0/0
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
@@ -101,20 +82,20 @@ l2_interfaces:
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
 l3_interfaces:
--   name: Bundle-Ether6
+-   name: Bundle-Ether1
 -   ipv4:
-    -   address: 10.171.221.134/30
-    name: Bundle-Ether6.6477
+    -   address: 168.245.89.233/30
+    name: Bundle-Ether1.185
 -   ipv4:
-    -   address: 192.0.2.1/32
-    name: Loopback0
--   name: Loopback1
--   name: Loopback2
--   name: Loopback4
--   name: Loopback6
+    -   address: 85.42.175.126/32
+    name: Loopback20
 -   ipv4:
-    -   address: 192.168.10.1/32
-    name: Loopback10
+    -   address: 85.42.175.127/32
+    name: Loopback30
+-   ipv4:
+    -   address: 1.1.1.100/32
+    name: Loopback100
+-   name: Loopback555
 -   ipv4:
     -   address: 10.10.20.175/24
     name: MgmtEth0/RP0/CPU0/0
@@ -127,8 +108,8 @@ l3_interfaces:
 -   name: GigabitEthernet0/0/0/6
 lacp: {}
 lacp_interfaces:
--   name: Bundle-Ether6
--   name: Bundle-Ether6.6477
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.185
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -138,17 +119,21 @@ lacp_interfaces:
 -   name: GigabitEthernet0/0/0/6
 lag_interfaces:
 -   members:
-    -   member: GigabitEthernet0/0/0/2
+    -   member: GigabitEthernet0/0/0/0
         mode: active
-    name: Bundle-Ether6
+    -   member: GigabitEthernet0/0/0/1
+        mode: active
+    name: Bundle-Ether1
 -   members:
-    -   member: GigabitEthernet0/0/0/2
+    -   member: GigabitEthernet0/0/0/0
         mode: active
-    name: Bundle-Ether6
+    -   member: GigabitEthernet0/0/0/1
+        mode: active
+    name: Bundle-Ether1
 lldp_global: {}
 lldp_interfaces:
--   name: Bundle-Ether6
--   name: Bundle-Ether6.6477
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.185
 -   name: GigabitEthernet0/0/0/0
 -   name: GigabitEthernet0/0/0/1
 -   name: GigabitEthernet0/0/0/2
@@ -156,12 +141,16 @@ lldp_interfaces:
 -   name: GigabitEthernet0/0/0/4
 -   name: GigabitEthernet0/0/0/5
 -   name: GigabitEthernet0/0/0/6
-logging_global:
-    buffered:
-        severity: informational
+logging_global: {}
 ntp_global: {}
-ospf_interfaces: []
-ospfv2: {}
+ospf_interfaces:
+-   name: Loopback20
+    type: loopback
+-   name: Loopback30
+    type: loopback
+ospfv2:
+    processes:
+    -   process_id: '100'
 ospfv3: {}
 prefix_lists: []
 snmp_server:
@@ -286,9 +275,23 @@ static_routes:
             -   forward_router_address: 10.10.20.254
             -   forward_router_address: 10.10.20.254
                 interface: MgmtEth0
-        -   dest: 222.228.1.1/32
-            next_hops:
-            -   description: ddos-2024/10/19-stage2
-                interface: Null0
-                tag: 9999
         safi: unicast
+vrf_address_family:
+-   name: test
+vrf_global:
+-   name: test
+vrf_interfaces:
+-   name: Bundle-Ether1
+-   name: Bundle-Ether1.185
+-   name: Loopback20
+-   name: Loopback30
+-   name: Loopback100
+-   name: Loopback555
+-   name: MgmtEth0/RP0/CPU0/0
+-   name: GigabitEthernet0/0/0/0
+-   name: GigabitEthernet0/0/0/1
+-   name: GigabitEthernet0/0/0/2
+-   name: GigabitEthernet0/0/0/3
+-   name: GigabitEthernet0/0/0/4
+-   name: GigabitEthernet0/0/0/5
+-   name: GigabitEthernet0/0/0/6
