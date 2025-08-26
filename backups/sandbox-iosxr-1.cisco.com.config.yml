@@ -39,7 +39,7 @@ interfaces:
 -   description: anycast-RP
     enabled: true
     name: Loopback30
--   description: '***TEST LOOPBACK****'
+-   description: Ansible Edit 1
     enabled: true
     name: Loopback100
 -   description: PRUEBA_KV
